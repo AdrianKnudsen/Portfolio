@@ -1,0 +1,19 @@
+:root {
+  --Primary: #222222;
+  --Secondary: #363636;
+  --Tertiary: #9a9d21;
+  --Font: #e0e0e0;
+}
+
+/*!/--- color: var(--Primary); ---/*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: #222222;
+}
