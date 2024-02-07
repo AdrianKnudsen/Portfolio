@@ -17,10 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.createElement("h1");
   header.classList.add("hero-header");
   header.textContent = ".";
+
   // Creating span for the name "Adrian"
   const adrianSpan = document.createElement("span");
   adrianSpan.textContent = "Adrian";
   adrianSpan.classList.add("name-span");
+
   // Creating span for the name "Knudsen"
   const knudsenSpan = document.createElement("span");
   knudsenSpan.textContent = "Knudsen";
