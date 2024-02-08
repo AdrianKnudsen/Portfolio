@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Create the hero paragraph element
   const paragraph = document.createElement("p");
   paragraph.textContent =
-    "Hei, jeg er Adrian Knudsen, en ivrig og dedikert kodningsstudent ved Kodehode i Bergen. Min lidenskap for teknologi og design driver meg i min reise etter å mestre ferdighetene innen webutvikling. Med en interesse for HTML, Css, JavaScript og React, er jeg i en kontinuerlig læringsprosess for å finpusse mine ferdigheter og holde meg oppdatert med de nyeste trendene og beste praksisene i bransjen.";
+    "Hei, jeg er Adrian Knudsen, en ivrig og dedikert kodningsstudent ved Kodehode i Bergen. Min lidenskap for teknologi og design driver meg i min reise etter å mestre ferdighetene innen webutvikling. Med en interesse for HTML, Css, JavaScript og React, er jeg i en kontinuerlig læringsprosess for å finpusse mine ferdigheter, holde meg oppdatert med de nyeste trendene og beste praksisene i bransjen.";
   paragraph.classList.add("hero-text");
 
   // Append the elements to the root element

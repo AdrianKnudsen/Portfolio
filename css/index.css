@@ -2,7 +2,9 @@
   --Primary: #222222;
   --Secondary: #363636;
   --Tertiary: #9a9d21;
-  --Font: #e0e0e0;
+  --Lorem: #e0e0e0;
+
+  --base-space: 1vw;
 }
 
 /*!/--- color: var(--Primary); ---/*/
@@ -15,5 +17,5 @@
 
 body {
   height: 100vh;
-  background-color: #222222;
+  background-color: var(--Primary);
 }
