@@ -95,3 +95,51 @@
     width: 24rem;
   }
 }
+
+@media (min-width: 420px) {
+  .logo {
+    width: 4rem;
+    transform: translate(10px, -315px);
+  }
+
+  .portfolio-image {
+    width: 18rem;
+    transform: translate(-30px, 75px);
+  }
+
+  .hero-header {
+    transform: translate(100px, -60px);
+    font-size: 55px;
+    width: 18rem;
+  }
+
+  .hero-text {
+    transform: translate(30px, -20px);
+    font-size: 3.5vw;
+    width: 25rem;
+  }
+}
+
+@media (min-width: 452px) {
+  .logo {
+    width: 4rem;
+    transform: translate(10px, -357px);
+  }
+
+  .portfolio-image {
+    width: 20rem;
+    transform: translate(-30px, 75px);
+  }
+
+  .hero-header {
+    transform: translate(110px, -80px);
+    font-size: 55px;
+    width: 18rem;
+  }
+
+  .hero-text {
+    transform: translate(30px, -50px);
+    font-size: 3.5vw;
+    width: 25rem;
+  }
+}
