@@ -17,8 +17,8 @@ NAVIGATION BACKGROUND
   position: fixed;
   height: calc(var(--btn-size) * 1px);
   width: calc(var(--btn-size) * 1px);
-  top: calc((var(--offset-value)) * 1px);
-  right: calc(var(--offset-value) * 1px);
+  top: calc((var(--offset-value)) * 0.5px);
+  right: calc(var(--offset-value) * 0.5px);
   border-radius: 50%;
   background: var(--Secondary);
   cursor: pointer;
