@@ -5,6 +5,9 @@
   --Lorem: #e0e0e0;
 
   --base-space: 1vw;
+
+  --offset-value: 30;
+  --btn-size: 60;
 }
 
 /*!/--- color: var(--Primary); ---/*/
@@ -16,6 +19,9 @@
 }
 
 body {
-  height: 100vh;
   background-color: var(--Primary);
+}
+
+.root {
+  height: 100vh;
 }
