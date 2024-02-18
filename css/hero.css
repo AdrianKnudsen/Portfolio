@@ -1,13 +1,13 @@
 .logo {
   width: 3.31rem;
   height: auto;
-  transform: translate(10px, -160px);
+  transform: translate(10px, -170px);
 }
 
 .portfolio-image {
   width: 10rem;
   height: auto;
-  transform: translate(-30px, 55px);
+  transform: translate(-30px, 65px);
   z-index: -1;
 }
 
@@ -18,14 +18,14 @@
     #292929 32.4%,
     rgba(41, 41, 41, 0) 91.08%
   );
-  padding: 18px 14px 18px 15px;
+  padding: 15px;
   color: var(--Lorem);
   font-family: Helvetica;
-  font-size: 40px;
+  font-size: 35px;
   line-height: 90%; /* 31.95px */
   letter-spacing: -0.225px;
-  transform: translate(65px, -40px);
-  width: 14.7rem;
+  transform: translate(80px, -25px);
+  width: 11.5rem;
 }
 
 .name-span {
@@ -37,45 +37,45 @@
 }
 
 .hero-text {
-  transform: translate(25px, -15px);
+  transform: translate(25px, -20px);
   color: var(--Lorem);
   font-family: Helvetica;
-  font-size: 12px;
+  font-size: 11.5px;
   font-style: normal;
   font-weight: 300;
   line-height: 152.99%; /* 17.624px */
   letter-spacing: 0.461px;
-  width: 17.7rem;
+  width: 17.5rem;
 }
 
-@media (min-width: 321px) {
+@media (min-width: 375px) {
   .logo {
-    width: 4rem;
-    transform: translate(10px, -250px);
+    width: 3.61rem;
+    transform: translate(10px, -275px);
   }
 
   .portfolio-image {
     width: 15rem;
-    transform: translate(-30px, 75px);
+    transform: translate(-30px, 65px);
   }
 
   .hero-header {
-    transform: translate(85px, -40px);
-    font-size: 50px;
-    width: 16.5rem;
+    transform: translate(110px, -70px);
+    font-size: 40px;
+    width: 13rem;
   }
 
   .hero-text {
-    transform: translate(25px, -20px);
+    transform: translate(25px, -60px);
     font-size: 13px;
     width: 20.5rem;
   }
 }
 
-@media (min-width: 376px) {
+@media (min-width: 390px) {
   .logo {
     width: 4rem;
-    transform: translate(10px, -275px);
+    transform: translate(10px, -290px);
   }
 
   .portfolio-image {
@@ -84,46 +84,47 @@
   }
 
   .hero-header {
-    transform: translate(95px, -40px);
+    transform: translate(95px, -60px);
     font-size: 55px;
-    width: 18rem;
+    width: 17rem;
   }
 
   .hero-text {
     transform: translate(25px, -20px);
     font-size: 14.5px;
-    width: 24rem;
+    width: 21.1rem;
   }
 }
 
-@media (min-width: 420px) {
+@media (min-width: 414px) {
   .logo {
     width: 4rem;
     transform: translate(10px, -315px);
   }
 
   .portfolio-image {
-    width: 18rem;
+    width: 17rem;
     transform: translate(-30px, 75px);
   }
 
   .hero-header {
-    transform: translate(100px, -60px);
-    font-size: 55px;
-    width: 18rem;
+    transform: translate(125px, -75px);
+    font-size: 48px;
+    width: 15.5rem;
   }
 
   .hero-text {
-    transform: translate(30px, -20px);
+    transform: translate(30px, -60px);
     font-size: 3.5vw;
-    width: 25rem;
+    width: 23rem;
+    padding-bottom: 2rem;
   }
 }
 
-@media (min-width: 452px) {
+@media (min-width: 428px) {
   .logo {
     width: 4rem;
-    transform: translate(10px, -357px);
+    transform: translate(10px, -380px);
   }
 
   .portfolio-image {
@@ -132,43 +133,43 @@
   }
 
   .hero-header {
-    transform: translate(110px, -80px);
+    transform: translate(130px, -100px);
     font-size: 55px;
-    width: 18rem;
+    width: 17rem;
   }
 
   .hero-text {
-    transform: translate(30px, -50px);
-    font-size: 3.5vw;
-    width: 25rem;
+    transform: translate(30px, -70px);
+    font-size: 3.7vw;
+    width: 24rem;
   }
 }
 
-@media (min-width: 489px) {
+@media (min-width: 430px) {
   .logo {
     width: 4rem;
-    transform: translate(10px, -442px);
+    transform: translate(10px, -425px);
   }
 
   .portfolio-image {
-    width: 24rem;
+    width: 22rem;
     transform: translate(-30px, 75px);
   }
 
   .hero-header {
     transform: translate(130px, -110px);
     font-size: 55px;
-    width: 18rem;
+    width: 17rem;
   }
 
   .hero-text {
-    transform: translate(30px, -80px);
-    font-size: 3.5vw;
-    width: 29rem;
+    transform: translate(30px, -90px);
+    font-size: 3.8vw;
+    width: 23.6rem;
   }
 }
 
-@media (min-width: 530px) {
+@media (min-width: 768px) {
   .logo {
     width: 4rem;
     transform: translate(10px, -506px);
