@@ -1,14 +1,20 @@
+.hero-container {
+  height: 100vh;
+}
+
 .logo {
   width: 3.31rem;
   height: auto;
-  transform: translate(10px, -170px);
+  position: fixed;
+  top: calc((var(--offset-value)) * 0.5px);
+  left: calc(var(--offset-value) * 0.5px);
+  cursor: pointer;
 }
 
 .portfolio-image {
   width: 10rem;
   height: auto;
-  transform: translate(-30px, 65px);
-  z-index: -1;
+  transform: translate(30px, 65px);
 }
 
 .hero-header {
@@ -51,12 +57,11 @@
 @media (min-width: 375px) {
   .logo {
     width: 3.61rem;
-    transform: translate(10px, -275px);
   }
 
   .portfolio-image {
     width: 15rem;
-    transform: translate(-30px, 65px);
+    transform: translate(30px, 65px);
   }
 
   .hero-header {
@@ -75,12 +80,11 @@
 @media (min-width: 390px) {
   .logo {
     width: 4rem;
-    transform: translate(10px, -290px);
   }
 
   .portfolio-image {
     width: 16rem;
-    transform: translate(-30px, 75px);
+    transform: translate(30px, 75px);
   }
 
   .hero-header {
@@ -99,12 +103,11 @@
 @media (min-width: 414px) {
   .logo {
     width: 4rem;
-    transform: translate(10px, -315px);
   }
 
   .portfolio-image {
     width: 17rem;
-    transform: translate(-30px, 75px);
+    transform: translate(30px, 75px);
   }
 
   .hero-header {
@@ -117,19 +120,18 @@
     transform: translate(30px, -60px);
     font-size: 3.5vw;
     width: 23rem;
-    padding-bottom: 2rem;
+    /* margin-bottom: 2rem; */
   }
 }
 
 @media (min-width: 428px) {
   .logo {
     width: 4rem;
-    transform: translate(10px, -380px);
   }
 
   .portfolio-image {
     width: 20rem;
-    transform: translate(-30px, 75px);
+    transform: translate(30px, 75px);
   }
 
   .hero-header {
@@ -148,12 +150,11 @@
 @media (min-width: 430px) {
   .logo {
     width: 4rem;
-    transform: translate(10px, -425px);
   }
 
   .portfolio-image {
     width: 22rem;
-    transform: translate(-30px, 75px);
+    transform: translate(30px, 75px);
   }
 
   .hero-header {
@@ -172,12 +173,11 @@
 @media (min-width: 768px) {
   .logo {
     width: 4rem;
-    transform: translate(10px, -506px);
   }
 
   .portfolio-image {
     width: 27rem;
-    transform: translate(-30px, 75px);
+    transform: translate(30px, 150px);
   }
 
   .hero-header {

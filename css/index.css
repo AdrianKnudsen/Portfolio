@@ -20,8 +20,5 @@
 
 body {
   background-color: var(--Primary);
-}
-
-.root {
   height: 100vh;
 }

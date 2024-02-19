@@ -3,19 +3,23 @@ let open = false;
 document.addEventListener("DOMContentLoaded", () => {
   const rootElement = document.querySelector(".root");
 
-  // Create the logo element
+  // Creating a hero div for the main hero content to live in
+  const heroContainer = document.createElement("div");
+  heroContainer.classList.add("hero-container");
+
+  // Creating the logo element
   const logo = document.createElement("img");
   logo.src = "../images/A-Logo.svg";
   logo.alt = "Logo";
   logo.classList.add("logo");
 
-  // Create the hero image element
+  // Creating the hero image element
   const img = document.createElement("img");
   img.src = "../images/AdrianK.png";
   img.alt = "A image of the person that this portfolio is about";
   img.classList.add("portfolio-image");
 
-  // Create the hero header element
+  // Creating the hero header element
   const header = document.createElement("h1");
   header.classList.add("hero-header");
   header.textContent = ".";
@@ -36,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   header.appendChild(knudsenSpan);
   header.append(" } ");
 
-  // Create the hero paragraph element
+  // Creating the hero paragraph element
   const paragraph = document.createElement("p");
   paragraph.textContent =
     "Hei, jeg heter Adrian og er en ivrig kode student ved Kodehode i Bergen. Jeg ser på meg selv som en designer med kode kunnskaper, da jeg har holdt på med design mye lengre enn koding. Jeg trives best i Figma og med Css, men syntes JavaScript og TypeScript er spennende og ønsker å fordype meg enda mer i disse språkene. På fritiden liker jeg å spille dataspill og favoritt sjanger er fps og survival spill. Tidligere har jeg også jobbet som freelance designer hos Knudsen Grafisk AS. I 2011 hadde jeg en kunstutstilling i Bergen hvor jeg viste fram digital kunst jeg hadde laget i Photoshop.";
@@ -58,14 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleBtn.appendChild(span);
   }
 
-  // Create the navigation wrapper
+  // Creating the navigation wrapper
   const wrapper = document.createElement("div");
   wrapper.classList.add("wrapper");
 
-  // Create the nav element
+  // Creating the nav element
   const nav = document.createElement("nav");
 
-  // Create the ul element
+  // Creating the ul element
   const ul = document.createElement("ul");
 
   // Defining the menu items
@@ -75,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { text: "Kontakt", href: "#kontakt" },
   ];
 
-  // Create li elements for each menu item
+  // Creating li elements for each menu item
   menuItems.forEach((item) => {
     const li = document.createElement("li");
     const a = document.createElement("a");
@@ -84,17 +88,29 @@ document.addEventListener("DOMContentLoaded", () => {
     a.textContent = item.text;
     li.appendChild(a);
     ul.appendChild(li);
+
+    // Checks for the "Om Meg" link and adds an event listener
+    if (item.text === "Om Meg") {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        showOmMegContent();
+        if (open) toggleMenu();
+      });
+    }
   });
 
   // Appending the ul to the nav, and the nav to the wrapper
   nav.appendChild(ul);
   wrapper.appendChild(nav);
 
-  // Append the elements to the root element
+  // Appends the hero elements to the hero container
+  heroContainer.appendChild(img);
+  heroContainer.appendChild(header);
+  heroContainer.appendChild(paragraph);
+
+  // Appends the elements to the root element
+  rootElement.appendChild(heroContainer);
   rootElement.appendChild(logo);
-  rootElement.appendChild(img);
-  rootElement.appendChild(header);
-  rootElement.appendChild(paragraph);
   rootElement.appendChild(navBg);
   rootElement.appendChild(toggleBtn);
   rootElement.appendChild(wrapper);
@@ -141,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggleMenu = () => {
     open = !open;
     animateMenu();
-    toggleBtn.classList.toggle("shown");
+    toggleBtn.classList.toggle("shown", open);
   };
 
   const resizeHandler = () => {
@@ -155,3 +171,20 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleBtn.addEventListener("click", toggleMenu, false);
   window.addEventListener("resize", resizeHandler, false);
 });
+
+// Function to handle the "Om Meg" content
+function showOmMegContent() {
+  const heroContainer = document.querySelector(".hero-container");
+  if (heroContainer) {
+    heroContainer.style.display = "none";
+  }
+
+  // Handle the "Om Meg" Content div
+  let omMegContent = document.querySelector(".om-meg-content");
+  if (!omMegContent) {
+    omMegContent = document.createElement("div");
+    omMegContent.classList.add("om-meg-content");
+    omMegContent.textContent = "Here is some lorem om meg";
+    document.querySelector(".root").appendChild(omMegContent);
+  }
+}
