@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Creating and appending the logo element directly to rootElement
   const logo = document.createElement("img");
-  logo.src = "./images/A-Logo.svg";
+  logo.src = "/images/A-Logo.svg";
   logo.alt = "Logo";
   logo.classList.add("logo");
   rootElement.appendChild(logo);
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Creating the hero image element
     const img = document.createElement("img");
-    img.src = "./images/AdrianK.png";
+    img.src = "/images/AdrianK.png";
     img.alt = "A image of the person that this portfolio is about";
     img.classList.add("portfolio-image");
     heroContainer.appendChild(img);
