@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleBtn.classList.add("btn");
   rootElement.appendChild(toggleBtn);
 
-  // Adding spans for hamburger icon
+  // Creating the spans for hamburger icon
   for (let i = 0; i < 3; i++) {
     const span = document.createElement("span");
     toggleBtn.appendChild(span);
@@ -176,14 +176,39 @@ function showOmMegContent() {
     heroContainer.style.display = "none";
   }
 
-  // Checks if the Om Meg content already exists
+  // Check if the Om Meg content already exists
   let omMegContent = document.querySelector(".om-meg-content");
   if (!omMegContent) {
+    // Create the Om Meg container div
     omMegContent = document.createElement("div");
     omMegContent.classList.add("om-meg-content");
-    omMegContent.textContent = "Here is some detailed text about Om Meg...";
+
+    // Create the span element for the hash symbol
+    const hashSpan = document.createElement("span");
+    hashSpan.textContent = "#";
+    hashSpan.classList.add("hash-symbol");
+
+    // Create the h2 element for the title
+    const h2 = document.createElement("h2");
+    h2.classList.add("om-meg-titel");
+
+    // Append the hash span to the h2 element before the title text
+    h2.appendChild(hashSpan);
+    h2.append("Om Meg");
+    omMegContent.appendChild(h2);
+
+    // Create the p element for the detailed text
+    const p = document.createElement("p");
+    p.innerHTML =
+      "Min kjærlighet for design kommer til syne ikke bare i mine kodingsprosjekter, men også i min hverdag. Jeg tror sterkt på at god design er mer enn bare estetikk; det handler om å skape en intuitiv og effektiv brukeropplevelse. Denne filosofien reflekteres i mitt arbeid hvor jeg alltid søker etter innovative løsninger som balanserer funksjonalitet med et visuelt tiltalende utseende.<br><br>Å spille dataspill, se på filmer og serier gir meg ikke bare en sjanse til å slappe av, men også inspirasjon. Jeg lærer om forskjellige historiefortellingsmetoder, karakterutvikling og visuelle effekter, som alle bidrar til min kreative tankeprosess.<br><br>Som en dedikert og nysgjerrig utvikler, er jeg alltid på utkikk etter muligheter til å anvende mine ferdigheter i virkelige prosjekter. Jeg er ivrig etter å bidra til et team med min tekniske kunnskap og kreative innsikt. Ta en titt på min portfolio for å se et utvalg av mine prosjekter, og føl deg fri til å kontakte meg for eventuelle samarbeidsmuligheter.<br><br>Takk for at du vurderer min portfolio. Jeg ser frem til muligheten til å bringe mine ferdigheter og lidenskap til ditt team.";
+
+    p.classList.add("om-meg-text");
+    omMegContent.appendChild(p);
+
+    // Append the Om Meg content div to the root element
     document.querySelector(".root").appendChild(omMegContent);
   } else {
+    // If it already exists, ensure it's visible
     omMegContent.style.display = "block";
   }
 }

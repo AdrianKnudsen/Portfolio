@@ -22,3 +22,7 @@ body {
   background-color: var(--Primary);
   height: 100vh;
 }
+
+.root {
+  padding-bottom: 6rem;
+}
