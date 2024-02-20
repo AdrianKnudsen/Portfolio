@@ -443,3 +443,57 @@ function showKontaktContent() {
     kontaktContent.style.display = "block";
   }
 }
+
+// Function to add support for touchscreen in the project carousel
+function addSwipeFunctionalityToCarousel(carouselElement) {
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  function handleTouchStart(event) {
+    touchStartX = event.touches[0].clientX;
+  }
+
+  function handleTouchMove(event) {
+    touchEndX = event.touches[0].clientX;
+  }
+
+  function handleTouchEnd() {
+    if (touchStartX - touchEndX > 50) {
+      // Swipe left, show next slide
+      showNextSlide();
+    } else if (touchStartX - touchEndX < -50) {
+      // Swipe right, show previous slide
+      showPreviousSlide();
+    }
+  }
+
+  carouselElement.addEventListener("touchstart", handleTouchStart, false);
+  carouselElement.addEventListener("touchmove", handleTouchMove, false);
+  carouselElement.addEventListener("touchend", handleTouchEnd, false);
+}
+
+function showNextSlide() {
+  // Logic to move to the next slide
+  const currentInput = document.querySelector('input[name="toggle"]:checked');
+  const nextInput =
+    currentInput.nextElementSibling ||
+    document.querySelector('input[name="toggle"]:first-of-type');
+  nextInput.checked = true;
+}
+
+function showPreviousSlide() {
+  // Logic to move to the previous slide
+  const currentInput = document.querySelector('input[name="toggle"]:checked');
+  let previousInput = currentInput.previousElementSibling;
+  if (!previousInput || !previousInput.matches("input")) {
+    // If we're at the first input or next sibling isn't an input
+    const inputs = document.querySelectorAll('input[name="toggle"]');
+    previousInput = inputs[inputs.length - 1]; // Loop back to the last
+  }
+  previousInput.checked = true;
+}
+
+const carouselElement = document.querySelector(".carousel-Box");
+if (carouselElement) {
+  addSwipeFunctionalityToCarousel(carouselElement);
+}
