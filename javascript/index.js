@@ -65,6 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (prosjekterContent) {
       prosjekterContent.style.display = "none";
     }
+    // Hide "kontant" content if visible
+    const kontaktContent = document.querySelector(".kontakt-content");
+    if (kontaktContent) {
+      kontaktContent.style.display = "none";
+    }
 
     createHeroContent();
     heroContainer.style.display = "";
@@ -127,6 +132,12 @@ document.addEventListener("DOMContentLoaded", () => {
         showProsjekterContent();
         if (open) toggleMenu();
       });
+    } else if (item.text === "Kontakt") {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        showKontaktContent();
+        if (open) toggleMenu();
+      });
     }
   });
 
@@ -184,15 +195,20 @@ document.addEventListener("DOMContentLoaded", () => {
 function showOmMegContent() {
   console.log("Om Meg content is being loaded"); // Debugging line
 
-  // Hide or clear existing content
+  // Hide or clear hero content
   const heroContainer = document.querySelector(".hero-container");
   if (heroContainer) {
     heroContainer.style.display = "none";
   }
-
+  // Hide "prosjekt" content if it exsist
   const prosjekterContent = document.querySelector(".prosjekter-content");
   if (prosjekterContent) {
     prosjekterContent.style.display = "none";
+  }
+  // Hide "kontakt" content if it exsist
+  const kontaktContent = document.querySelector(".kontakt-content");
+  if (kontaktContent) {
+    kontaktContent.style.display = "none";
   }
 
   // Check if the Om Meg content already exists
@@ -232,6 +248,7 @@ function showOmMegContent() {
   }
 }
 
+// Function to handle the "Prosjekt" content
 function showProsjekterContent() {
   // Hide the hero content and any other content
   const heroContainer = document.querySelector(".hero-container");
@@ -241,6 +258,12 @@ function showProsjekterContent() {
   const omMegContent = document.querySelector(".om-meg-content");
   if (omMegContent) {
     omMegContent.style.display = "none";
+  }
+
+  // Hide "kontakt" content if it exsist
+  const kontaktContent = document.querySelector(".kontakt-content");
+  if (kontaktContent) {
+    kontaktContent.style.display = "none";
   }
 
   // Check if the "Prosjekter" content already exists
@@ -263,5 +286,46 @@ function showProsjekterContent() {
   } else {
     // If it already exists, ensure it's visible
     prosjekterContent.style.display = "block";
+  }
+}
+
+// Function to handle the "Kontakt" content
+function showKontaktContent() {
+  // Hide "hero" content
+  const heroContainer = document.querySelector(".hero-container");
+  heroContainer.style.display = "none";
+
+  // Hide "Om Meg" content if it exsist
+  const omMegContent = document.querySelector(".om-meg-content");
+  if (omMegContent) {
+    omMegContent.style.display = "none";
+  }
+
+  // Hide "Prosjekter" if it exsist
+  const prosjekterContent = document.querySelector(".prosjekter-content");
+  if (prosjekterContent) {
+    prosjekterContent.style.display = "none";
+  }
+
+  // Check if the "Prosjekter" content already exists
+  let kontaktContent = document.querySelector(".kontakt-content");
+  if (!kontaktContent) {
+    kontaktContent = document.createElement("div");
+    kontaktContent.classList.add("kontakt-content");
+
+    // Create and append the content specific to "Kontakt"
+    const h2 = document.createElement("h2");
+    h2.textContent = "Kontakt";
+    kontaktContent.appendChild(h2);
+
+    // Example paragraph or could be dynamic project listings
+    const p = document.createElement("p");
+    p.textContent = "Ta kontakt.";
+    kontaktContent.appendChild(p);
+
+    document.querySelector(".root").appendChild(kontaktContent);
+  } else {
+    // If it already exists, ensure it's visible
+    kontaktContent.style.display = "block";
   }
 }
