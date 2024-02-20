@@ -319,24 +319,24 @@ function createAndAppendCarousel(parentElement) {
   const slideInfos = [
     {
       title: "Luna Link",
-      text: "Dette var et prosjekt jeg jobbet på mens jeg gikk på Kodehode, personelig stod jeg hovedsaklig for design, men hadde også ansvar for header og søk/filtrering logikk.",
-      tools: "React, JavaScript, CSS, html",
+      text: "Dette var et prosjekt jeg jobbet på mens jeg gikk på Kodehode, personelig stod jeg hovedsaklig for design, men hadde også ansvar for header og søk/filtrering logikk. Dette er et prosjekt jeg lærte mye av, både med koding og sammarbeid",
+      tools: "React, JavaScript, CSS, HTML",
       imageSrc: "./Luna Link.jpeg",
       githubLink: "https://github.com/AdrianK-B06/Luna-Link.git",
       liveSiteLink: "https://lunalink.netlify.app",
     },
     {
       title: "Tech Blog",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos commodi eos totam perferendis possimus dolorem, deleniti vitae harum? Enim.",
-      tools: "React, TypeScript, CSS, html",
+      text: "Dette var mitt første prosjekt i React, en enkel blogg lignende side med simulert text api, og bruker bilde hvor jeg koblet til min første api. ",
+      tools: "React, TypeScript, CSS, HTML",
       imageSrc: "./The Tech Blog.jpeg",
       githubLink: "https://github.com/AdrianK-B06/React-Oppgave-1.git",
       liveSiteLink: "https://tech-blog-demo.netlify.app",
     },
     {
       title: "Next Tv",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos commodi eos totam perferendis possimus dolorem, deleniti vitae harum? Enim.",
-      tools: "React, TypeScript, CSS, html",
+      text: "Dette er et prosjekt jeg framdeles jobber med på siden av den organiserte opplæringen via Kodehode. Jeg startet dette prosjektet fordi jeg ville få enda mer øving med både React, TS og selvsagt tilkobling av forskjellige api'er.",
+      tools: "React, TypeScript, CSS, HTML",
       imageSrc: "./Next-tv.jpeg",
       githubLink: "https://github.com/AdrianK-B06/Stream-finder-nexttv.git",
       liveSiteLink: "https://next-tv.netlify.app",
@@ -434,7 +434,7 @@ function showKontaktContent() {
 
     // Example paragraph or could be dynamic project listings
     const p = document.createElement("p");
-    p.textContent = "Ta kontakt.";
+    p.textContent = "Send gjerne en e-post: adrian@knudsen.no.";
     kontaktContent.appendChild(p);
 
     document.querySelector(".root").appendChild(kontaktContent);
