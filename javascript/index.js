@@ -272,21 +272,135 @@ function showProsjekterContent() {
     prosjekterContent = document.createElement("div");
     prosjekterContent.classList.add("prosjekter-content");
 
-    // Create and append the content specific to "Prosjekter"
-    const h2 = document.createElement("h2");
-    h2.textContent = "Prosjekter";
-    prosjekterContent.appendChild(h2);
-
-    // Example paragraph or could be dynamic project listings
-    const p = document.createElement("p");
-    p.textContent = "Her er noen av prosjektene jeg har jobbet med.";
-    prosjekterContent.appendChild(p);
+    // Dynamically create and append the carousel to the "Prosjekter" content
+    createAndAppendCarousel(prosjekterContent);
 
     document.querySelector(".root").appendChild(prosjekterContent);
   } else {
-    // If it already exists, ensure it's visible
     prosjekterContent.style.display = "block";
   }
+}
+
+function createAndAppendCarousel(parentElement) {
+  const carouselBox = document.createElement("div");
+  carouselBox.className = "carousel-Box";
+
+  // Create the slider
+  const slider = document.createElement("div");
+  slider.className = "slider";
+
+  // Inputs for the carousel
+  const inputIds = ["btn-1", "btn-2", "btn-3"];
+  inputIds.forEach((id, index) => {
+    const input = document.createElement("input");
+    input.type = "radio";
+    input.name = "toggle";
+    input.id = id;
+    if (index === 0) input.checked = true;
+    slider.appendChild(input);
+  });
+
+  // Slider controls
+  const sliderControls = document.createElement("div");
+  sliderControls.className = "slider-controls";
+  inputIds.forEach((id) => {
+    const label = document.createElement("label");
+    label.setAttribute("for", id);
+    sliderControls.appendChild(label);
+  });
+
+  slider.appendChild(sliderControls);
+
+  // Slides
+  const slides = document.createElement("ul");
+  slides.className = "slides";
+
+  // Information for each slide
+  const slideInfos = [
+    {
+      title: "Luna Link",
+      text: "Dette var et prosjekt jeg jobbet på mens jeg gikk på Kodehode, personelig stod jeg hovedsaklig for design, men hadde også ansvar for header og søk/filtrering logikk.",
+      tools: "React, JavaScript, CSS, html",
+      imageSrc: "./Luna Link.jpeg",
+      githubLink: "https://github.com/AdrianK-B06/Luna-Link.git",
+      liveSiteLink: "https://lunalink.netlify.app",
+    },
+    {
+      title: "Tech Blog",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos commodi eos totam perferendis possimus dolorem, deleniti vitae harum? Enim.",
+      tools: "React, TypeScript, CSS, html",
+      imageSrc: "./The Tech Blog.jpeg",
+      githubLink: "https://github.com/AdrianK-B06/React-Oppgave-1.git",
+      liveSiteLink: "https://tech-blog-demo.netlify.app",
+    },
+    {
+      title: "Next Tv",
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat dignissimos commodi eos totam perferendis possimus dolorem, deleniti vitae harum? Enim.",
+      tools: "React, TypeScript, CSS, html",
+      imageSrc: "./Next-tv.jpeg",
+      githubLink: "https://github.com/AdrianK-B06/Stream-finder-nexttv.git",
+      liveSiteLink: "https://next-tv.netlify.app",
+    },
+  ];
+
+  slideInfos.forEach((slideInfo) => {
+    const li = document.createElement("li");
+    li.className = "slide";
+
+    // Image
+    const img = document.createElement("img");
+    img.className = "slide-image";
+    img.src = slideInfo.imageSrc;
+    img.alt = slideInfo.alt;
+    img.width = 320;
+    img.height = 240;
+    li.appendChild(img);
+
+    // Slide content
+    const div = document.createElement("div");
+    div.className = "slide-content";
+
+    // Project titel
+    const h2 = document.createElement("h2");
+    h2.className = "slide-title";
+    h2.textContent = slideInfo.title;
+    div.appendChild(h2);
+
+    // Description text
+    const p = document.createElement("p");
+    p.className = "slide-text";
+    p.textContent = slideInfo.text;
+    div.appendChild(p);
+
+    // Tools used text box
+    const toolsP = document.createElement("p");
+    toolsP.className = "slide-tools";
+    toolsP.textContent = "Verktøy: " + slideInfo.tools;
+    div.appendChild(toolsP);
+
+    // GitHub link
+    const githubLink = document.createElement("a");
+    githubLink.href = slideInfo.githubLink;
+    githubLink.className = "slide-link";
+    githubLink.textContent = "GitHub";
+    githubLink.target = "_blank"; // Open in a new tab
+    div.appendChild(githubLink);
+
+    // Live site link
+    const liveSiteLink = document.createElement("a");
+    liveSiteLink.href = slideInfo.liveSiteLink;
+    liveSiteLink.className = "slide-link";
+    liveSiteLink.textContent = "Live Site";
+    liveSiteLink.target = "_blank"; // Open in a new tab
+    div.appendChild(liveSiteLink);
+
+    li.appendChild(div);
+    slides.appendChild(li);
+  });
+
+  slider.appendChild(slides);
+  carouselBox.appendChild(slider);
+  parentElement.appendChild(carouselBox);
 }
 
 // Function to handle the "Kontakt" content

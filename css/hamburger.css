@@ -155,6 +155,7 @@ nav ul {
   margin: auto;
   pointer-events: auto;
   text-align: center;
+  visibility: hidden;
 }
 
 nav li {

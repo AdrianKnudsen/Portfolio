@@ -26,3 +26,11 @@ body {
 .root {
   height: 100vh;
 }
+
+::selection {
+  background: var(--Tertiary);
+}
+
+span::selection {
+  background: var(--Lorem);
+}
