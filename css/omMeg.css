@@ -87,11 +87,46 @@
 
 @media (min-width: 768px) {
   .om-meg-content {
-    width: 90%;
-    transform: translateY(5.5rem);
+    width: 75%;
+    transform: none;
+    margin-top: auto;
   }
 
   .om-meg-text {
-    font-size: 3.12vw;
+    font-size: 2.3vw;
+  }
+}
+
+@media (min-width: 820px) {
+  .om-meg-text {
+    font-size: 2.3vw;
+    margin-top: auto;
+  }
+}
+
+@media (min-width: 1024px) {
+  .om-meg-content {
+    width: 85%;
+    margin-top: auto;
+  }
+  .om-meg-text {
+    font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .om-meg-content {
+    width: 85%;
+    margin-top: auto;
+  }
+
+  .om-meg-text {
+    font-size: 1.5vw;
+  }
+}
+
+@media (min-width: 1600px) {
+  .om-meg-text {
+    font-size: 1.2vw;
   }
 }
