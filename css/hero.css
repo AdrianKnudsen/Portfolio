@@ -229,7 +229,7 @@
 @media (min-width: 820px) {
   .hero-header {
     font-size: 5.5rem;
-    width: 24rem;
+    width: 25rem;
   }
 
   .hero-text {
@@ -256,7 +256,7 @@
   .hero-header {
     transform: none;
     font-size: 7rem;
-    width: 30rem;
+    width: 31rem;
     grid-area: 1 / 1 / 3 / 2;
     background: none;
   }

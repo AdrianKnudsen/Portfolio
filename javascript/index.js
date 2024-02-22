@@ -499,6 +499,6 @@ function showKontaktContent() {
     document.querySelector(".root").appendChild(kontaktContent);
   } else {
     // If it already exists, ensure it's visible
-    kontaktContent.style.display = "block";
+    kontaktContent.style.display = "";
   }
 }
