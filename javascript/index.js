@@ -1,5 +1,3 @@
-let open = false;
-
 document.addEventListener("DOMContentLoaded", () => {
   const rootElement = document.querySelector(".root");
 
@@ -76,119 +74,129 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Creating the navigation background
-  const navBg = document.createElement("div");
-  navBg.id = "nav-bg";
-  navBg.classList.add("btn");
-  rootElement.appendChild(navBg);
+  setTimeout(() => {
+    let open = false; // Tracks the menu state
 
-  // Creating the toggle button
-  const toggleBtn = document.createElement("div");
-  toggleBtn.id = "toggle-btn";
-  toggleBtn.classList.add("btn");
-  rootElement.appendChild(toggleBtn);
+    // Creating the navigation background
+    const navBg = document.createElement("div");
+    navBg.id = "nav-bg";
+    navBg.classList.add("btn");
+    rootElement.appendChild(navBg);
 
-  // Creating the spans for hamburger icon
-  for (let i = 0; i < 3; i++) {
-    const span = document.createElement("span");
-    toggleBtn.appendChild(span);
-  }
+    // Creating the toggle button
+    const toggleBtn = document.createElement("div");
+    toggleBtn.id = "toggle-btn";
+    toggleBtn.classList.add("btn");
+    rootElement.appendChild(toggleBtn);
 
-  // Creating the navigation wrapper
-  const wrapper = document.createElement("div");
-  wrapper.classList.add("wrapper");
-  rootElement.appendChild(wrapper);
-
-  const nav = document.createElement("nav");
-  wrapper.appendChild(nav);
-
-  const ul = document.createElement("ul");
-  nav.appendChild(ul);
-
-  // Defining and creating menu items
-  const menuItems = [
-    { text: "Om Meg", href: "#om-meg" },
-    { text: "Prosjekter", href: "#prosjekter" },
-    { text: "Kontakt", href: "#kontakt" },
-  ];
-
-  menuItems.forEach((item) => {
-    const li = document.createElement("li");
-    const a = document.createElement("a");
-    a.classList.add("link");
-    a.href = item.href;
-    a.textContent = item.text;
-    li.appendChild(a);
-    ul.appendChild(li);
-
-    if (item.text === "Om Meg") {
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        showOmMegContent();
-        if (open) toggleMenu();
-      });
-    } else if (item.text === "Prosjekter") {
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        showProsjekterContent();
-        if (open) toggleMenu();
-      });
-    } else if (item.text === "Kontakt") {
-      a.addEventListener("click", (e) => {
-        e.preventDefault();
-        showKontaktContent();
-        if (open) toggleMenu();
-      });
+    // Creating spans for the hamburger icon
+    for (let i = 0; i < 3; i++) {
+      const span = document.createElement("span");
+      toggleBtn.appendChild(span);
     }
-  });
 
-  // Menu animation functions
-  function calculateValues() {
-    const elemH = navBg.getBoundingClientRect().height;
-    const elemW = navBg.getBoundingClientRect().width;
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    const offsetValue = Number(
-      getComputedStyle(navBg).getPropertyValue("--offset-value")
-    );
-    offsetX = w / 2 - elemW / 2 - offsetValue;
-    offsetY = h / 2 - elemH / 2 - offsetValue;
-    const radius = Math.sqrt(h ** 2 + w ** 2);
-    scale = radius / (elemW / 4) / 3 + 0.3;
-  }
+    // Creating the navigation wrapper
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("wrapper");
+    rootElement.appendChild(wrapper);
 
-  function openMenu() {
-    navBg.style.setProperty("--translate-x", `${offsetY}px`);
-    navBg.style.setProperty("--translate-y", `-${offsetX}px`);
-    navBg.style.setProperty("--scale", scale);
-  }
+    const nav = document.createElement("nav");
+    wrapper.appendChild(nav);
 
-  function closeMenu() {
-    navBg.style.setProperty("--scale", 1);
-    navBg.style.setProperty("--translate-x", 0);
-    navBg.style.setProperty("--translate-y", 0);
-  }
+    const ul = document.createElement("ul");
+    nav.appendChild(ul);
 
-  function animateMenu() {
-    open ? openMenu() : closeMenu();
-  }
+    // Defining and creating menu items
+    const menuItems = [
+      { text: "Om Meg", href: "#om-meg" },
+      { text: "Prosjekter", href: "#prosjekter" },
+      { text: "Kontakt", href: "#kontakt" },
+    ];
 
-  function toggleMenu() {
-    open = !open;
-    animateMenu();
-    toggleBtn.classList.toggle("shown", open);
-  }
-
-  // Initial calculation
-  calculateValues();
-
-  // Event listeners
-  toggleBtn.addEventListener("click", toggleMenu, false);
-  window.addEventListener("resize", () => {
-    window.requestAnimationFrame(() => {
-      calculateValues();
+    // Function to close the menu
+    function toggleMenu() {
+      open = !open;
       animateMenu();
+      toggleBtn.classList.toggle("shown", open);
+    }
+
+    // Handle action for each link in the nav menu
+    menuItems.forEach((item) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.classList.add("link");
+      a.href = item.href;
+      a.textContent = item.text;
+      li.appendChild(a);
+      ul.appendChild(li);
+
+      if (item.text === "Om Meg") {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          showOmMegContent();
+          if (open) toggleMenu();
+        });
+      } else if (item.text === "Prosjekter") {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          showProsjekterContent();
+          if (open) toggleMenu();
+        });
+      } else if (item.text === "Kontakt") {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          showKontaktContent();
+          e.preventDefault();
+
+          // Close the menu if it's open
+          if (open) toggleMenu();
+        });
+      }
     });
-  });
+
+    let offsetX, offsetY, scale;
+
+    function calculateValues() {
+      const elemH = navBg.getBoundingClientRect().height;
+      const elemW = navBg.getBoundingClientRect().width;
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const offsetValue = Number(
+        getComputedStyle(navBg).getPropertyValue("--offset-value")
+      );
+      offsetX = w / 2 - elemW / 2 - offsetValue;
+      offsetY = h / 2 - elemH / 2 - offsetValue;
+      const radius = Math.sqrt(h ** 2 + w ** 2);
+      scale = radius / (elemW / 4) / 3 + 0.3;
+    }
+
+    function openMenu() {
+      navBg.style.setProperty("--translate-x", `${offsetY}px`);
+      navBg.style.setProperty("--translate-y", `-${offsetX}px`);
+      navBg.style.setProperty("--scale", scale);
+    }
+
+    function closeMenu() {
+      navBg.style.setProperty("--scale", 1);
+      navBg.style.setProperty("--translate-x", 0);
+      navBg.style.setProperty("--translate-y", 0);
+    }
+
+    function animateMenu() {
+      open ? openMenu() : closeMenu();
+    }
+
+    // Initial calculation and event listener setup
+    calculateValues();
+
+    toggleBtn.addEventListener("click", toggleMenu, false);
+    window.addEventListener("resize", () => {
+      window.requestAnimationFrame(() => {
+        calculateValues();
+        animateMenu();
+      });
+    });
+  }, 100); // Delay to ensure layout stability
 });
 
 // Function to handle the "Om Meg" content
