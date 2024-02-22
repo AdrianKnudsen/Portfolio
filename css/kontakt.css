@@ -5,10 +5,10 @@
   align-items: center;
 
   width: 70%;
-  height: 60%;
+  height: 70%;
 
   border-radius: 27.87px 0px 27.87px 27.87px;
-  border: 1px solid #9a9d21;
+  border: 1px solid var(--Tertiary);
   background: rgba(44, 44, 44, 0.9);
   font-family: Helvetica;
 

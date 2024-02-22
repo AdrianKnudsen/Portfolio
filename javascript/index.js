@@ -272,10 +272,11 @@ function showProsjekterContent() {
     prosjekterContent = document.createElement("div");
     prosjekterContent.classList.add("prosjekter-content");
 
+    document.querySelector(".root").appendChild(prosjekterContent);
     // Dynamically create and append the carousel to the "Prosjekter" content
     createAndAppendCarousel(prosjekterContent);
 
-    document.querySelector(".root").appendChild(prosjekterContent);
+    enableSwipeForCarousel();
   } else {
     prosjekterContent.style.display = "block";
   }
@@ -502,3 +503,50 @@ function showKontaktContent() {
     kontaktContent.style.display = "";
   }
 }
+
+function enableSwipeForCarousel() {
+  const slider = document.querySelector(".slider");
+  if (!slider) {
+    console.log("Slider element not found.");
+    return; // Exit the function if the slider doesn't exist
+  }
+
+  let touchstartX = 0;
+  let touchendX = 0;
+
+  function checkSwipeDirection() {
+    if (touchendX < touchstartX) {
+      // Swiped left, show next slide
+      showNextSlide();
+    }
+    if (touchendX > touchstartX) {
+      // Swiped right, show previous slide
+      showPreviousSlide();
+    }
+  }
+
+  slider.addEventListener("touchstart", (e) => {
+    touchstartX = e.changedTouches[0].screenX;
+  });
+
+  slider.addEventListener("touchend", (e) => {
+    touchendX = e.changedTouches[0].screenX;
+    checkSwipeDirection();
+  });
+
+  function showNextSlide() {
+    const inputs = document.querySelectorAll('.slider input[type="radio"]');
+    const currentIndex = Array.from(inputs).findIndex((input) => input.checked);
+    const nextIndex = (currentIndex + 1) % inputs.length; // Loop back to 0 if at the last slide
+    inputs[nextIndex].checked = true;
+  }
+}
+
+function showPreviousSlide() {
+  const inputs = document.querySelectorAll('.slider input[type="radio"]');
+  const currentIndex = Array.from(inputs).findIndex((input) => input.checked);
+  const previousIndex = (currentIndex - 1 + inputs.length) % inputs.length; // Go to the last slide if at the first slide
+  inputs[previousIndex].checked = true;
+}
+
+enableSwipeForCarousel();
