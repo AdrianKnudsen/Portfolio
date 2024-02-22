@@ -4,14 +4,14 @@
   justify-content: center;
   align-items: center;
 
+  height: auto;
   width: 70%;
-  height: 70%;
 
   border-radius: 27.87px 0px 27.87px 27.87px;
   border: 1px solid var(--Tertiary);
   background: rgba(44, 44, 44, 0.9);
   font-family: Helvetica;
-
+  padding: 95px 30px 147px 30px;
   margin: auto;
   margin-top: 12rem;
 }

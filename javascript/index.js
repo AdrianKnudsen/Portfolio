@@ -506,31 +506,36 @@ function showKontaktContent() {
 
 function enableSwipeForCarousel() {
   const slider = document.querySelector(".slider");
-  if (!slider) {
-    console.log("Slider element not found.");
-    return; // Exit the function if the slider doesn't exist
-  }
-
   let touchstartX = 0;
+  let touchstartY = 0;
   let touchendX = 0;
+  let touchendY = 0;
 
   function checkSwipeDirection() {
-    if (touchendX < touchstartX) {
-      // Swiped left, show next slide
-      showNextSlide();
-    }
-    if (touchendX > touchstartX) {
-      // Swiped right, show previous slide
-      showPreviousSlide();
+    // Calculate the distance of swipe in both directions
+    const diffX = touchendX - touchstartX;
+    const diffY = touchendY - touchstartY;
+
+    // Proceed with the slide change only if horizontal swipe distance is greater than vertical
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX < 0) {
+        // Swiped left, show next slide
+        showNextSlide();
+      } else if (diffX > 0) {
+        // Swiped right, show previous slide
+        showPreviousSlide();
+      }
     }
   }
 
   slider.addEventListener("touchstart", (e) => {
     touchstartX = e.changedTouches[0].screenX;
+    touchstartY = e.changedTouches[0].screenY; // Capture the start Y coordinate
   });
 
   slider.addEventListener("touchend", (e) => {
     touchendX = e.changedTouches[0].screenX;
+    touchendY = e.changedTouches[0].screenY; // Capture the end Y coordinate
     checkSwipeDirection();
   });
 
