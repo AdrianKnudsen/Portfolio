@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.createElement("h1");
     header.classList.add("hero-header");
     const adrianSpan = document.createElement("span");
-    adrianSpan.textContent = "Adrian";
+    adrianSpan.textContent = ".Adrian";
     adrianSpan.classList.add("name-span");
     header.appendChild(adrianSpan);
     header.append(" { ");
@@ -421,79 +421,84 @@ function showKontaktContent() {
     prosjekterContent.style.display = "none";
   }
 
-  // Check if the "Prosjekter" content already exists
+  // Check if the "Kontakt" content already exists
   let kontaktContent = document.querySelector(".kontakt-content");
   if (!kontaktContent) {
+    // Create a div for the "Kontakt" content
     kontaktContent = document.createElement("div");
     kontaktContent.classList.add("kontakt-content");
 
-    // Create and append the content specific to "Kontakt"
+    // Create and append the header specific to "Kontakt" content
     const h2 = document.createElement("h2");
-    h2.textContent = "Kontakt";
+    h2.textContent = "Ta kontakt!";
     kontaktContent.appendChild(h2);
+    h2.classList.add("kontakt-header");
 
-    // Example paragraph or could be dynamic project listings
+    // Create and append kontakt text to "Kontakt" content
     const p = document.createElement("p");
-    p.textContent = "Send gjerne en e-post: adrian@knudsen.no.";
+    p.textContent = "Send gjerne en e-post!";
     kontaktContent.appendChild(p);
+    p.classList.add("kontakt-text");
+
+    // Create and append vector to the "kontakt" content
+    const telegram = document.createElement("img");
+    telegram.src = "./telegram-plane.svg";
+    telegram.alt = "Image of a telegram paper plane";
+    telegram.classList.add("telegram");
+    kontaktContent.appendChild(telegram);
+
+    // Create and append kontakt mail link to "Kontakt" content
+    const mailLink = document.createElement("a");
+    mailLink.href = "mailto:adrian@knudsen.no";
+    mailLink.textContent = "adrian@knudsen.no";
+    kontaktContent.appendChild(mailLink);
+    mailLink.classList.add("mail-link");
+
+    // Create a container div for social links
+    const socialLinksContainer = document.createElement("div");
+    socialLinksContainer.classList.add("social-links-container");
+
+    // Create and append Github link img to the "kontakt" content
+    const githubLinkAnchor = document.createElement("a");
+    githubLinkAnchor.href = "https://github.com/AdrianK-B06";
+    githubLinkAnchor.target = "_blank";
+    githubLinkAnchor.rel = "noopener noreferrer";
+
+    // Create the image element for the GitHub logo
+    const githubLogo = document.createElement("img");
+    githubLogo.src = "./github.svg";
+    githubLogo.alt = "Image of a GitHub logo";
+    githubLogo.classList.add("github-logo");
+
+    githubLinkAnchor.appendChild(githubLogo);
+
+    // Append the GitHub link to the social links container
+    socialLinksContainer.appendChild(githubLinkAnchor);
+
+    // Create and append LinkedIn link img to the "kontakt" content
+    const linkedinLinkAnchor = document.createElement("a");
+    linkedinLinkAnchor.href =
+      "https://www.linkedin.com/in/adrian-knudsen-4522012b6";
+    linkedinLinkAnchor.target = "_blank";
+    linkedinLinkAnchor.rel = "noopener noreferrer";
+
+    // Create the image element for the LinkedIn logo
+    const linkedinLogo = document.createElement("img");
+    linkedinLogo.src = "./social-linkedin.svg";
+    linkedinLogo.alt = "Image of a LinkedIn logo";
+    linkedinLogo.classList.add("linkedin-logo");
+
+    linkedinLinkAnchor.appendChild(linkedinLogo);
+
+    // Append the LinkedIn link to the social links container
+    socialLinksContainer.appendChild(linkedinLinkAnchor);
+
+    // Append the social links container to the kontaktContent
+    kontaktContent.appendChild(socialLinksContainer);
 
     document.querySelector(".root").appendChild(kontaktContent);
   } else {
     // If it already exists, ensure it's visible
     kontaktContent.style.display = "block";
   }
-}
-
-// Function to add support for touchscreen in the project carousel
-function addSwipeFunctionalityToCarousel(carouselElement) {
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  function handleTouchStart(event) {
-    touchStartX = event.touches[0].clientX;
-  }
-
-  function handleTouchMove(event) {
-    touchEndX = event.touches[0].clientX;
-  }
-
-  function handleTouchEnd() {
-    if (touchStartX - touchEndX > 50) {
-      // Swipe left, show next slide
-      showNextSlide();
-    } else if (touchStartX - touchEndX < -50) {
-      // Swipe right, show previous slide
-      showPreviousSlide();
-    }
-  }
-
-  carouselElement.addEventListener("touchstart", handleTouchStart, false);
-  carouselElement.addEventListener("touchmove", handleTouchMove, false);
-  carouselElement.addEventListener("touchend", handleTouchEnd, false);
-}
-
-function showNextSlide() {
-  // Logic to move to the next slide
-  const currentInput = document.querySelector('input[name="toggle"]:checked');
-  const nextInput =
-    currentInput.nextElementSibling ||
-    document.querySelector('input[name="toggle"]:first-of-type');
-  nextInput.checked = true;
-}
-
-function showPreviousSlide() {
-  // Logic to move to the previous slide
-  const currentInput = document.querySelector('input[name="toggle"]:checked');
-  let previousInput = currentInput.previousElementSibling;
-  if (!previousInput || !previousInput.matches("input")) {
-    // If we're at the first input or next sibling isn't an input
-    const inputs = document.querySelectorAll('input[name="toggle"]');
-    previousInput = inputs[inputs.length - 1]; // Loop back to the last
-  }
-  previousInput.checked = true;
-}
-
-const carouselElement = document.querySelector(".carousel-Box");
-if (carouselElement) {
-  addSwipeFunctionalityToCarousel(carouselElement);
 }
