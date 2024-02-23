@@ -556,53 +556,64 @@ function showKontaktContent() {
 }
 
 function enableSwipeForCarousel() {
-  const slider = document.querySelector(".slider");
-  let touchstartX = 0;
-  let touchstartY = 0;
-  let touchendX = 0;
-  let touchendY = 0;
+  // Check if the device supports touch events
+  if ("ontouchstart" in window) {
+    const slider = document.querySelector(".slider");
 
-  function checkSwipeDirection() {
-    // Calculate the distance of swipe in both directions
-    const diffX = touchendX - touchstartX;
-    const diffY = touchendY - touchstartY;
+    if (slider) {
+      let touchstartX = 0,
+        touchstartY = 0;
+      let touchendX = 0,
+        touchendY = 0;
 
-    // Proceed with the slide change only if horizontal swipe distance is greater than vertical
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-      if (diffX < 0) {
-        // Swiped left, show next slide
-        showNextSlide();
-      } else if (diffX > 0) {
-        // Swiped right, show previous slide
-        showPreviousSlide();
+      slider.addEventListener("touchstart", (e) => {
+        touchstartX = e.changedTouches[0].screenX;
+        touchstartY = e.changedTouches[0].screenY; // Capture the start Y coordinate
+      });
+
+      slider.addEventListener("touchend", (e) => {
+        touchendX = e.changedTouches[0].screenX;
+        touchendY = e.changedTouches[0].screenY; // Capture the end Y coordinate
+        checkSwipeDirection();
+      });
+
+      function checkSwipeDirection() {
+        // Calculate the distance of swipe in both directions
+        const diffX = touchendX - touchstartX;
+        const diffY = touchendY - touchstartY;
+
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX < 0) {
+            // Swiped left, show next slide
+            showNextSlide();
+          } else if (diffX > 0) {
+            // Swiped right, show previous slide
+            showPreviousSlide();
+          }
+        }
+      }
+
+      function showNextSlide() {
+        const inputs = document.querySelectorAll('.slider input[type="radio"]');
+        const currentIndex = Array.from(inputs).findIndex(
+          (input) => input.checked
+        );
+        const nextIndex = (currentIndex + 1) % inputs.length; // Loop back to 0 if at the last slide
+        inputs[nextIndex].checked = true;
+      }
+
+      function showPreviousSlide() {
+        const inputs = document.querySelectorAll('.slider input[type="radio"]');
+        const currentIndex = Array.from(inputs).findIndex(
+          (input) => input.checked
+        );
+        const previousIndex =
+          (currentIndex - 1 + inputs.length) % inputs.length; // Go to the last slide if at the first slide
+        inputs[previousIndex].checked = true;
       }
     }
   }
-
-  slider.addEventListener("touchstart", (e) => {
-    touchstartX = e.changedTouches[0].screenX;
-    touchstartY = e.changedTouches[0].screenY; // Capture the start Y coordinate
-  });
-
-  slider.addEventListener("touchend", (e) => {
-    touchendX = e.changedTouches[0].screenX;
-    touchendY = e.changedTouches[0].screenY; // Capture the end Y coordinate
-    checkSwipeDirection();
-  });
-
-  function showNextSlide() {
-    const inputs = document.querySelectorAll('.slider input[type="radio"]');
-    const currentIndex = Array.from(inputs).findIndex((input) => input.checked);
-    const nextIndex = (currentIndex + 1) % inputs.length; // Loop back to 0 if at the last slide
-    inputs[nextIndex].checked = true;
-  }
 }
 
-function showPreviousSlide() {
-  const inputs = document.querySelectorAll('.slider input[type="radio"]');
-  const currentIndex = Array.from(inputs).findIndex((input) => input.checked);
-  const previousIndex = (currentIndex - 1 + inputs.length) % inputs.length; // Go to the last slide if at the first slide
-  inputs[previousIndex].checked = true;
-}
-
+// Call the function to enable swipe for carousel
 enableSwipeForCarousel();
