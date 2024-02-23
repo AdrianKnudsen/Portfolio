@@ -1,3 +1,5 @@
+// Background animation script
+
 const colors = ["#e0e0e0", "#363636", "#9a9d21", "#363636", "#9a9d21"];
 
 const numBalls = 50;
