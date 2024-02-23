@@ -1,132 +1,134 @@
-.om-meg-content {
-  background-color: var(--Secondary);
-  font-family: Helvetica;
-  border-radius: 20.93px 0px 20.93px 20.93px;
-  padding: 15px 23px 13px 22px;
-  height: auto;
-  width: 90%;
-  margin: auto;
-  transform: translateY(5.5rem);
-  overflow-y: auto;
-}
+@media (prefers-color-scheme: dark) {
+  .om-meg-content {
+    background-color: var(--Secondary);
+    font-family: Helvetica;
+    border-radius: 20.93px 0px 20.93px 20.93px;
+    padding: 15px 23px 13px 22px;
+    height: auto;
+    width: 90%;
+    margin: auto;
+    transform: translateY(5.5rem);
+    overflow-y: auto;
+  }
 
-.om-meg-titel {
-  color: var(--Lorem);
-  font-size: 22px;
-  line-height: 115%;
-  letter-spacing: 0.837px;
-  margin-bottom: 8px;
-}
-
-.hash-symbol {
-  color: var(--Tertiary);
-  font-size: 1.8rem;
-  margin-right: 0.2rem;
-}
-
-.om-meg-text {
-  color: var(--Lorem);
-  font-size: 3.12vw;
-  line-height: 152.99%;
-  letter-spacing: 0.301px;
-}
-
-@media (min-width: 375px) {
   .om-meg-titel {
-    margin-bottom: 1rem;
+    color: var(--Lorem);
+    font-size: 22px;
+    line-height: 115%;
+    letter-spacing: 0.837px;
+    margin-bottom: 8px;
+  }
+
+  .hash-symbol {
+    color: var(--Tertiary);
+    font-size: 1.8rem;
+    margin-right: 0.2rem;
   }
 
   .om-meg-text {
-    font-size: 3.2vw;
-  }
-}
-
-@media (min-width: 390px) {
-  .om-meg-content {
-    width: 90%;
+    color: var(--Lorem);
+    font-size: 3.12vw;
+    line-height: 152.99%;
+    letter-spacing: 0.301px;
   }
 
-  .om-meg-text {
-    font-size: 3.6vw;
-    margin-bottom: 0.5rem;
-  }
-}
+  @media (min-width: 375px) {
+    .om-meg-titel {
+      margin-bottom: 1rem;
+    }
 
-@media (min-width: 414px) {
-  .om-meg-content {
-    width: 90%;
-    transform: translateY(6.6rem);
+    .om-meg-text {
+      font-size: 3.2vw;
+    }
   }
 
-  .om-meg-text {
-    font-size: 3.23vw;
-  }
-}
+  @media (min-width: 390px) {
+    .om-meg-content {
+      width: 90%;
+    }
 
-@media (min-width: 428px) {
-  .om-meg-content {
-    width: 90%;
-    transform: translateY(7rem);
-  }
-
-  .om-meg-text {
-    font-size: 3.77vw;
-  }
-}
-
-@media (min-width: 430px) {
-  .om-meg-content {
-    width: 90%;
-    transform: translateY(7rem);
+    .om-meg-text {
+      font-size: 3.6vw;
+      margin-bottom: 0.5rem;
+    }
   }
 
-  .om-meg-text {
-    font-size: 3.77vw;
-  }
-}
+  @media (min-width: 414px) {
+    .om-meg-content {
+      width: 90%;
+      transform: translateY(6.6rem);
+    }
 
-@media (min-width: 768px) {
-  .om-meg-content {
-    width: 75%;
-    transform: none;
-    margin-top: auto;
-  }
-
-  .om-meg-text {
-    font-size: 2.3vw;
-  }
-}
-
-@media (min-width: 820px) {
-  .om-meg-text {
-    font-size: 2.3vw;
-    margin-top: auto;
-  }
-}
-
-@media (min-width: 1024px) {
-  .om-meg-content {
-    width: 85%;
-    margin-top: auto;
-  }
-  .om-meg-text {
-    font-size: 1.4rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  .om-meg-content {
-    width: 85%;
-    margin-top: auto;
+    .om-meg-text {
+      font-size: 3.23vw;
+    }
   }
 
-  .om-meg-text {
-    font-size: 1.5vw;
-  }
-}
+  @media (min-width: 428px) {
+    .om-meg-content {
+      width: 90%;
+      transform: translateY(7rem);
+    }
 
-@media (min-width: 1600px) {
-  .om-meg-text {
-    font-size: 1.2vw;
+    .om-meg-text {
+      font-size: 3.77vw;
+    }
+  }
+
+  @media (min-width: 430px) {
+    .om-meg-content {
+      width: 90%;
+      transform: translateY(7rem);
+    }
+
+    .om-meg-text {
+      font-size: 3.77vw;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .om-meg-content {
+      width: 75%;
+      transform: none;
+      margin-top: auto;
+    }
+
+    .om-meg-text {
+      font-size: 2.3vw;
+    }
+  }
+
+  @media (min-width: 820px) {
+    .om-meg-text {
+      font-size: 2.3vw;
+      margin-top: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .om-meg-content {
+      width: 85%;
+      margin-top: auto;
+    }
+    .om-meg-text {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media (min-width: 1440px) {
+    .om-meg-content {
+      width: 85%;
+      margin-top: auto;
+    }
+
+    .om-meg-text {
+      font-size: 1.5vw;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .om-meg-text {
+      font-size: 1.2vw;
+    }
   }
 }
