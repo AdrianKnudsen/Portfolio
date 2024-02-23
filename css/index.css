@@ -37,3 +37,10 @@ body {
 span::selection {
   background: var(--Lorem);
 }
+
+.ball {
+  position: absolute;
+  border-radius: 100%;
+  opacity: 0.7;
+  z-index: -1;
+}
