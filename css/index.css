@@ -1,3 +1,9 @@
+@import url("../css/hero.css");
+@import url("../css/kontakt.css");
+@import url("../css/prosjekter.css");
+@import url("../css/omMeg.css");
+@import url("../css/hamburger.css");
+
 :root {
   --Primary: #222222;
   --Secondary: #363636;
