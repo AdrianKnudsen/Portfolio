@@ -242,6 +242,12 @@
     height: 70%;
   }
 
+  .hero-container::before {
+    content: "";
+    display: block;
+    padding-top: (9 / 16 * 100%); /* 16:9 Aspect Ratio */
+  }
+
   .portfolio-image {
     width: 28rem;
     transform: none;
