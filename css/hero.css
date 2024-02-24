@@ -193,9 +193,9 @@
   .hero-container {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: auto auto;
     width: 95%;
-    height: 60%;
+    height: 70%;
   }
 
   .portfolio-image {
@@ -237,7 +237,7 @@
   .hero-container {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: auto auto;
     width: 85%;
     height: 70%;
   }
@@ -276,9 +276,9 @@
   .hero-container {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    grid-template-rows: repeat(2, 1fr);
-    width: 75%;
-    height: 80%;
+    grid-template-rows: auto auto;
+    width: 80%;
+    height: 90%;
   }
 
   .portfolio-image {
