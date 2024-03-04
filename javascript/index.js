@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const knudsenSpan = document.createElement("span");
     knudsenSpan.textContent = "Knudsen";
     knudsenSpan.classList.add("surname-span");
+    knudsenSpan.setAttribute("data-text", "Knudsen");
     header.appendChild(knudsenSpan);
     header.append(" } ");
     heroContainer.appendChild(header);
