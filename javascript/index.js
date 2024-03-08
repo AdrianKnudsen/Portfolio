@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Creating the hero image element
     const img = document.createElement("img");
-    img.src = "./AdrianK.png";
+    img.src = "./Adrian-cyber.png";
     img.alt = "A image of the person that this portfolio is about";
     img.classList.add("portfolio-image");
     heroContainer.appendChild(img);
