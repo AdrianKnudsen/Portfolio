@@ -336,9 +336,14 @@
   }
 
   .hero-header {
-    transform: translate(0px, -150px);
+    transform: translate(0px, -120px);
     font-size: 75px;
     width: 25rem;
+    background: linear-gradient(60deg, #292929 32.4%, rgba(41, 41, 41, 0) 70%);
+  }
+
+  .name-span {
+    color: #666666;
   }
 
   .hero-text {
