@@ -28,11 +28,11 @@
 
 body {
   background-color: var(--Primary);
-  height: 100vh;
+  height: 100lvh;
 }
 
 .root {
-  height: 90vh;
+  height: 90lvh;
   display: flex;
   justify-content: center;
   align-items: center;
