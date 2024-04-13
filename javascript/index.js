@@ -391,8 +391,8 @@ function createAndAppendCarousel(parentElement) {
       text: "Dette er et prosjekt jeg framdeles jobber med på siden av den organiserte opplæringen via Kodehode. Jeg startet dette prosjektet fordi jeg ville få enda mer øving med både React, TS og selvsagt tilkobling av forskjellige api'er.",
       tools: "React, TypeScript, CSS, HTML",
       imageSrc: "./Next-tv.jpeg",
-      githubLink: "https://github.com/AdrianK-B06/Stream-finder-nexttv.git",
-      liveSiteLink: "https://next-tv.netlify.app",
+      githubLink: "https://github.com/AdrianK-B06/Next-Tv",
+      liveSiteLink: "https://next-tv-js.netlify.app",
     },
   ];
 
