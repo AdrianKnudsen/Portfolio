@@ -513,7 +513,7 @@ function showKontaktContent() {
 
     // Create and append Github link img to the "kontakt" content
     const githubLinkAnchor = document.createElement("a");
-    githubLinkAnchor.href = "https://github.com/AdrianK-B06";
+    githubLinkAnchor.href = "https://github.com/AdrianKnudsen";
     githubLinkAnchor.target = "_blank";
     githubLinkAnchor.rel = "noopener noreferrer";
 
