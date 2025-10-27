@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Creating the hero paragraph element
     const paragraph = document.createElement("p");
     paragraph.textContent =
-      "Hei, jeg heter Adrian og er en ivrig kode student ved Kodehode i Bergen. Jeg ser på meg selv som en designer med kode kunnskaper, da jeg har holdt på med design mye lengre enn koding. Jeg trives best i Figma og med Css, men syntes JavaScript og TypeScript er spennende og ønsker å fordype meg enda mer i disse språkene. På fritiden liker jeg å spille dataspill og favoritt sjanger er fps og survival spill. Tidligere har jeg også jobbet som freelance designer hos Knudsen Grafisk AS. I 2011 hadde jeg en kunstutstilling i Bergen hvor jeg viste fram digital kunst jeg hadde laget i Photoshop.";
+      "Hi, my name is Adrian and I’m a passionate designer and coder currently looking for opportunities in web development or design. I consider myself a designer with coding skills, as I have been working with design much longer than with code. I feel most at home in Figma and CSS, but I find JavaScript and TypeScript exciting and want to deepen my knowledge in these languages. In my free time, I enjoy playing video games, especially FPS and survival games. I have also worked as a freelance designer at Knudsen Grafisk AS, and in 2011 I held an art exhibition in Bergen showcasing digital artwork I created in Photoshop.";
     paragraph.classList.add("hero-text");
     heroContainer.appendChild(paragraph);
   }
@@ -152,9 +152,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Defining and creating menu items
     const menuItems = [
-      { text: "Om Meg", href: "#om-meg" },
-      { text: "Prosjekter", href: "#prosjekter" },
-      { text: "Kontakt", href: "#kontakt" },
+      { text: "About", href: "#about" },
+      { text: "Projects", href: "#projects" },
+      { text: "Contact", href: "#contact" },
     ];
 
     // Function to close the menu
@@ -174,19 +174,19 @@ document.addEventListener("DOMContentLoaded", () => {
       li.appendChild(a);
       ul.appendChild(li);
 
-      if (item.text === "Om Meg") {
+      if (item.text === "About") {
         a.addEventListener("click", (e) => {
           e.preventDefault();
           showOmMegContent();
           if (open) toggleMenu();
         });
-      } else if (item.text === "Prosjekter") {
+      } else if (item.text === "Projects") {
         a.addEventListener("click", (e) => {
           e.preventDefault();
           showProsjekterContent();
           if (open) toggleMenu();
         });
-      } else if (item.text === "Kontakt") {
+      } else if (item.text === "Contact") {
         a.addEventListener("click", (e) => {
           e.preventDefault();
           showKontaktContent();
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to handle the "Om Meg" content
 function showOmMegContent() {
-  console.log("Om Meg content is being loaded"); // Debugging line
+  console.log("About content is being loaded"); // Debugging line
 
   // Hide or clear hero content
   const heroContainer = document.querySelector(".hero-container");
@@ -281,13 +281,13 @@ function showOmMegContent() {
 
     // Append the hash span to the h2 element before the title text
     h2.appendChild(hashSpan);
-    h2.append("Om Meg");
+    h2.append("About");
     omMegContent.appendChild(h2);
 
     // Create the p element for the detailed text
     const p = document.createElement("p");
     p.innerHTML =
-      "Min kjærlighet for design kommer til syne ikke bare i mine kodingsprosjekter, men også i min hverdag. Jeg tror sterkt på at god design er mer enn bare estetikk; det handler om å skape en intuitiv og effektiv brukeropplevelse. Denne filosofien reflekteres i mitt arbeid hvor jeg alltid søker etter innovative løsninger som balanserer funksjonalitet med et visuelt tiltalende utseende.<br><br>Å spille dataspill, se på filmer og serier gir meg ikke bare en sjanse til å slappe av, men også inspirasjon. Jeg lærer om forskjellige historiefortellingsmetoder, karakterutvikling og visuelle effekter, som alle bidrar til min kreative tankeprosess.<br><br>Som en dedikert og nysgjerrig utvikler, er jeg alltid på utkikk etter muligheter til å anvende mine ferdigheter i virkelige prosjekter. Jeg er ivrig etter å bidra til et team med min tekniske kunnskap og kreative innsikt. Ta en titt på min portfolio for å se et utvalg av mine prosjekter, og føl deg fri til å kontakte meg for eventuelle samarbeidsmuligheter.<br><br>Takk for at du vurderer min portfolio. Jeg ser frem til muligheten til å bringe mine ferdigheter og lidenskap til ditt team.";
+      "My love for design is evident not only in my coding projects but also in my everyday life. I strongly believe that good design is more than just aesthetics; it’s about creating an intuitive and effective user experience. This philosophy is reflected in my work, where I always strive for innovative solutions that balance functionality with a visually appealing look.<br><br>Playing video games, watching movies, and series not only give me a chance to relax but also provide inspiration. I learn about different storytelling methods, character development, and visual effects, all of which contribute to my creative thought process.<br><br>As a dedicated and curious developer, I am always looking for opportunities to apply my skills in real-world projects. I am eager to contribute to a team with my technical knowledge and creative insight. Take a look at my portfolio to see a selection of my projects, and feel free to contact me for any potential collaboration opportunities.<br><br>Thank you for taking the time to review my portfolio. I look forward to the opportunity to bring my skills and passion to your team.";
 
     p.classList.add("om-meg-text");
     omMegContent.appendChild(p);
@@ -371,28 +371,28 @@ function createAndAppendCarousel(parentElement) {
   // Information for each slide
   const slideInfos = [
     {
+      title: "Nomito",
+      text: "Nomito is a smart web app that helps you cook with what you already have at home. The goal is to reduce food waste, save money, and make everyday cooking easier and more creative.",
+      tools: "Next.js, JavaScript, CSS, HTML",
+      imageSrc: "./nomito_vercel_app.jpeg",
+      githubLink: "https://github.com/AdrianKnudsen/nomito",
+      liveSiteLink: "https://nomito.vercel.app",
+    },
+    {
+      title: "Wear & Tear",
+      text: "A modern e-commerce web app built with Next.js for the frontend and Sanity as the backend CMS. Features product listings, dynamic pages, and a clean, responsive design. Work in progress.",
+      tools: "Next.js, JavaScript, CSS, HTML",
+      imageSrc: "./wearandtear_vercel_app.jpeg",
+      githubLink: "https://github.com/AdrianKnudsen/wearandtear",
+      liveSiteLink: "https://wearandtear.vercel.app",
+    },
+    {
       title: "Luna Link",
-      text: "Dette var et prosjekt jeg jobbet på mens jeg gikk på Kodehode, personelig stod jeg hovedsaklig for design, men hadde også ansvar for header og søk/filtrering logikk. Dette er et prosjekt jeg lærte mye av, både med koding og sammarbeid",
+      text: "This was a project I worked on while attending Kodehode. Personally, I was mainly responsible for the design, but I also handled the header and search/filtering logic. This was a project I learned a lot from, both in terms of coding and collaboration.",
       tools: "React, JavaScript, CSS, HTML",
       imageSrc: "./Luna Link.jpeg",
       githubLink: "https://github.com/AdrianK-B06/Luna-Link.git",
       liveSiteLink: "https://lunalink.netlify.app",
-    },
-    {
-      title: "Tech Blog",
-      text: "Dette var mitt første prosjekt i React, en enkel blogg lignende side med simulert text api, og bruker bilde hvor jeg koblet til min første api. ",
-      tools: "React, TypeScript, CSS, HTML",
-      imageSrc: "./The Tech Blog.jpeg",
-      githubLink: "https://github.com/AdrianK-B06/React-Oppgave-1.git",
-      liveSiteLink: "https://tech-blog-demo.netlify.app",
-    },
-    {
-      title: "Next Tv",
-      text: "Dette er et prosjekt jeg framdeles jobber med på siden av den organiserte opplæringen via Kodehode. Jeg startet dette prosjektet fordi jeg ville få enda mer øving med både React, TS og selvsagt tilkobling av forskjellige api'er.",
-      tools: "React, JavaScript, CSS, HTML",
-      imageSrc: "./Next-tv.jpeg",
-      githubLink: "https://github.com/AdrianK-B06/Next-Tv",
-      liveSiteLink: "https://next-tv-js.netlify.app",
     },
   ];
 
@@ -428,7 +428,7 @@ function createAndAppendCarousel(parentElement) {
     // Tools used text box
     const toolsP = document.createElement("p");
     toolsP.className = "slide-tools";
-    toolsP.textContent = "Verktøy: " + slideInfo.tools;
+    toolsP.textContent = "Tools: " + slideInfo.tools;
     div.appendChild(toolsP);
 
     // GitHub link
@@ -483,13 +483,13 @@ function showKontaktContent() {
 
     // Create and append the header specific to "Kontakt" content
     const h2 = document.createElement("h2");
-    h2.textContent = "Ta kontakt!";
+    h2.textContent = "Get in touch!";
     kontaktContent.appendChild(h2);
     h2.classList.add("kontakt-header");
 
     // Create and append kontakt text to "Kontakt" content
     const p = document.createElement("p");
-    p.textContent = "Send gjerne en e-post!";
+    p.textContent = "Feel free to send an email!";
     kontaktContent.appendChild(p);
     p.classList.add("kontakt-text");
 

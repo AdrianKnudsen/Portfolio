@@ -11,7 +11,9 @@
   width: 300px;
   height: 430px;
   /* margin: auto auto; */
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 1px -2px rgba(0, 0, 0, 0.2);
   border-radius: 20.93px 0px 20.93px 20.93px;
 }
@@ -85,12 +87,10 @@
   border-radius: 20.93px 0px 20.93px 20.93px;
 }
 
-/* .slide-content {
-    
-  } */
+/* Slide Content */
 
 .slide-title {
-  margin-bottom: 1px;
+  margin: 20px 0 1px 0;
   font-size: 30px;
   color: var(--Lorem);
 }
@@ -248,7 +248,11 @@
     margin-bottom: 20px;
   }
 
-  /* Remove the checked-based transformations as they are no longer needed */
+  .slide-title {
+    margin: -10px 0 1px 0;
+  }
+
+  /* Removes the checked-based transformations as they are no longer needed */
   #btn-1:checked ~ .slides .slide:nth-child(1),
   #btn-2:checked ~ .slides .slide:nth-child(2),
   #btn-3:checked ~ .slides .slide:nth-child(3) {
@@ -256,7 +260,7 @@
     transform: none;
   }
 
-  /* Remove animations as they are also no longer needed */
+  /* Removes animations as they are also no longer needed */
   #btn-1:not(:checked) ~ .slides .slide:nth-child(1),
   #btn-2:not(:checked) ~ .slides .slide:nth-child(2),
   #btn-3:not(:checked) ~ .slides .slide:nth-child(3) {
