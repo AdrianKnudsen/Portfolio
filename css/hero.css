@@ -51,7 +51,6 @@
   top: 0;
   left: -2px;
   width: 100%;
-  color: 53px;
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-before 3s infinite linear alternate-reverse;
@@ -63,7 +62,6 @@
   top: 0;
   left: 2px;
   width: 100%;
-  color: 53px;
   overflow: hidden;
   clip: rect(0, 900px, 0, 0);
   animation: noise-after 2s infinite linear alternate-reverse;
@@ -356,8 +354,8 @@
 @media (min-width: 768px) {
   .hero-container {
     display: grid;
-    grid-template-columns: repeat(1fr, 1fr);
-    grid-template-rows: repeat(1fr, 1fr);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     width: 95%;
     height: 60%;
   }

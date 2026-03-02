@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Creating the hero image element
     const img = document.createElement("img");
     img.src = "./Adrian-cyber.png";
-    img.alt = "A image of the person that this portfolio is about";
+    img.alt = "An image of the person that this portfolio is about";
     img.classList.add("portfolio-image");
     heroContainer.appendChild(img);
 
@@ -190,7 +190,6 @@ document.addEventListener("DOMContentLoaded", () => {
         a.addEventListener("click", (e) => {
           e.preventDefault();
           showKontaktContent();
-          e.preventDefault();
 
           // Close the menu if it's open
           if (open) toggleMenu();
@@ -245,19 +244,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to handle the "Om Meg" content
 function showOmMegContent() {
-  console.log("About content is being loaded"); // Debugging line
-
   // Hide or clear hero content
   const heroContainer = document.querySelector(".hero-container");
   if (heroContainer) {
     heroContainer.style.display = "none";
   }
-  // Hide "prosjekt" content if it exsist
+  // Hide "prosjekter" content if it exists
   const prosjekterContent = document.querySelector(".prosjekter-content");
   if (prosjekterContent) {
     prosjekterContent.style.display = "none";
   }
-  // Hide "kontakt" content if it exsist
+  // Hide "kontakt" content if it exists
   const kontaktContent = document.querySelector(".kontakt-content");
   if (kontaktContent) {
     kontaktContent.style.display = "none";
@@ -312,7 +309,7 @@ function showProsjekterContent() {
     omMegContent.style.display = "none";
   }
 
-  // Hide "kontakt" content if it exsist
+  // Hide "kontakt" content if it exists
   const kontaktContent = document.querySelector(".kontakt-content");
   if (kontaktContent) {
     kontaktContent.style.display = "none";
@@ -375,6 +372,7 @@ function createAndAppendCarousel(parentElement) {
       text: "Nomito is a smart web app that helps you cook with what you already have at home. The goal is to reduce food waste, save money, and make everyday cooking easier and more creative.",
       tools: "Next.js, JavaScript, CSS, HTML",
       imageSrc: "./nomito_vercel_app.jpeg",
+      alt: "Screenshot of the Nomito web app",
       githubLink: "https://github.com/AdrianKnudsen/nomito",
       liveSiteLink: "https://nomito.vercel.app",
     },
@@ -383,6 +381,7 @@ function createAndAppendCarousel(parentElement) {
       text: "A modern e-commerce web app built with Next.js for the frontend and Sanity as the backend CMS. Features product listings, dynamic pages, and a clean, responsive design. Work in progress.",
       tools: "Next.js, JavaScript, CSS, HTML",
       imageSrc: "./wearandtear_vercel_app.jpeg",
+      alt: "Screenshot of the Wear & Tear e-commerce site",
       githubLink: "https://github.com/AdrianKnudsen/wearandtear",
       liveSiteLink: "https://wearandtear.vercel.app",
     },
@@ -391,6 +390,7 @@ function createAndAppendCarousel(parentElement) {
       text: "This was a project I worked on while attending Kodehode. Personally, I was mainly responsible for the design, but I also handled the header and search/filtering logic. This was a project I learned a lot from, both in terms of coding and collaboration.",
       tools: "React, JavaScript, CSS, HTML",
       imageSrc: "./Luna Link.jpeg",
+      alt: "Screenshot of the Luna Link project",
       githubLink: "https://github.com/AdrianK-B06/Luna-Link.git",
       liveSiteLink: "https://lunalink.netlify.app",
     },
@@ -462,13 +462,13 @@ function showKontaktContent() {
   const heroContainer = document.querySelector(".hero-container");
   heroContainer.style.display = "none";
 
-  // Hide "Om Meg" content if it exsist
+  // Hide "Om Meg" content if it exists
   const omMegContent = document.querySelector(".om-meg-content");
   if (omMegContent) {
     omMegContent.style.display = "none";
   }
 
-  // Hide "Prosjekter" if it exsist
+  // Hide "Prosjekter" if it exists
   const prosjekterContent = document.querySelector(".prosjekter-content");
   if (prosjekterContent) {
     prosjekterContent.style.display = "none";
@@ -616,5 +616,3 @@ function enableSwipeForCarousel() {
   }
 }
 
-// Call the function to enable swipe for carousel
-enableSwipeForCarousel();
