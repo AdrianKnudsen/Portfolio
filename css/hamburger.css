@@ -1,18 +1,24 @@
-/* =====================
-NAVIGATION BACKGROUND
-===================== */
+/* =============================================================================
+   NAVIGATION BACKGROUND
+   The expanding circle that fills the screen when the menu opens.
+   CSS custom properties (--translate-x, --translate-y, --scale) are set by JS
+   to position and size the circle correctly for any viewport.
+   ============================================================================= */
+
 #nav-bg {
   transform-origin: top right;
   transition: transform 0.6s;
   transform: translate(var(--translate-x), var(--translate-y))
     scale(var(--scale));
   will-change: transform;
-  pointer-events: none;
+  pointer-events: none; /* Clicks pass through to content behind it */
 }
 
-/* ======
-  BUTTON
-  ====== */
+/* =============================================================================
+   HAMBURGER BUTTON
+   Shared base styles for both the nav background and the toggle button.
+   ============================================================================= */
+
 .btn {
   position: fixed;
   height: calc(var(--btn-size) * 1px);
@@ -27,18 +33,25 @@ NAVIGATION BACKGROUND
   border: none;
   z-index: 100;
   user-select: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Removes tap flash on mobile */
 }
 
+/* Toggle button specific layout */
 #toggle-btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: var(--Tertiary);
-  /*box-shadow: 0 6px 12px rgba(0,0,0,.1);*/
   transition: transform 0.3s;
 }
+
+/* =============================================================================
+   HAMBURGER ICON LINES
+   Three <span> elements form the hamburger. Each span has a :before and :after
+   pseudo-element that make up the two halves of each line, allowing them to
+   animate independently into an X shape.
+   ============================================================================= */
 
 #toggle-btn span {
   position: relative;
@@ -48,10 +61,12 @@ NAVIGATION BACKGROUND
 #toggle-btn span {
   margin-top: -4px;
 }
+
 #toggle-btn span + span {
   margin-top: 8px;
 }
 
+/* Left and right halves of each line */
 #toggle-btn span:before,
 #toggle-btn span:after {
   content: "";
@@ -59,9 +74,8 @@ NAVIGATION BACKGROUND
   top: 0;
   background: currentColor;
   opacity: 0.8;
-  height: 100%;
-  width: 50%;
   height: 4px;
+  width: 50%;
   transition: 0.25s cubic-bezier(0.6, 0, 0.3, 1);
   transform-origin: center center;
 }
@@ -76,22 +90,31 @@ NAVIGATION BACKGROUND
   border-radius: 0 3px 3px 0;
 }
 
+/* =============================================================================
+   HAMBURGER → X ANIMATION
+   When .shown is applied, the top and bottom lines rotate into an X,
+   and the middle line fades out to the sides.
+   ============================================================================= */
+
+/* Top line — left half rotates up-right */
 #toggle-btn.shown span:nth-of-type(1):before {
   transform: translate3d(3px, 3.5px, 0) rotate(45deg);
 }
-
+/* Top line — right half rotates up-left */
 #toggle-btn.shown span:nth-of-type(1):after {
   transform: translate3d(-3px, 3.5px, 0) rotate(-45deg);
 }
 
+/* Bottom line — left half rotates down-right */
 #toggle-btn.shown span:nth-of-type(3):before {
   transform: translate3d(3px, -3.5px, 0) rotate(-45deg);
 }
-
+/* Bottom line — right half rotates down-left */
 #toggle-btn.shown span:nth-of-type(3):after {
   transform: translate3d(-3px, -3.5px, 0) rotate(45deg);
 }
 
+/* Middle line — both halves slide out and fade */
 #toggle-btn.shown span:nth-of-type(2):before,
 #toggle-btn.shown span:nth-of-type(2):after {
   opacity: 0.0001;
@@ -105,11 +128,13 @@ NAVIGATION BACKGROUND
   transform: translateX(200%);
 }
 
+/* Subtle scale-down on open */
 #toggle-btn.shown:before {
   transform: scale(0.6);
   transition: 0.2s;
 }
 
+/* Shadow layer behind the button */
 #toggle-btn:before {
   content: "";
   transition: 0.2s 0.2s;
@@ -123,6 +148,8 @@ NAVIGATION BACKGROUND
   filter: blur(5px);
   z-index: -2;
 }
+
+/* Highlight layer on top of the button background */
 #toggle-btn:after {
   content: "";
   position: absolute;
@@ -135,9 +162,13 @@ NAVIGATION BACKGROUND
   z-index: -1;
 }
 
-/* ==========
-  NAVIGATION
-  ========== */
+/* =============================================================================
+   NAVIGATION MENU
+   Full-screen overlay that appears when the menu is open.
+   pointer-events: none on <nav> prevents blocking clicks when closed;
+   pointer-events: auto on <ul> re-enables clicks on the actual menu items.
+   ============================================================================= */
+
 nav {
   width: 100%;
   height: 100%;
@@ -158,6 +189,7 @@ nav ul {
   visibility: hidden;
 }
 
+/* Menu items start offset and invisible, then animate in when .shown is applied */
 nav li {
   font-size: 30px;
   color: #212121;
@@ -173,6 +205,7 @@ nav li + li {
   margin-top: 30px;
 }
 
+/* Reveal items with a spring animation when the toggle button has .shown */
 #toggle-btn.shown ~ .wrapper nav li {
   transform: none;
   opacity: 1;
@@ -180,6 +213,7 @@ nav li + li {
   transition: 0.35s cubic-bezier(0.4, 2.08, 0.55, 1);
 }
 
+/* Staggered delays so items appear one after another */
 #toggle-btn.shown ~ .wrapper nav li:nth-child(1) {
   transition-delay: 0.15s;
 }
@@ -190,9 +224,12 @@ nav li + li {
   transition-delay: 0.35s;
 }
 
-/* ============
-  LINK EFFECT
-  ============ */
+/* =============================================================================
+   LINK UNDERLINE EFFECT
+   Two thin bars (via :before and :after) slide in from outside the link
+   on hover, meeting in the middle to form an underline.
+   ============================================================================= */
+
 .link {
   position: relative;
   touch-action: manipulation;
@@ -210,18 +247,21 @@ nav li + li {
   transition: transform 0.3s cubic-bezier(0.5, 0.5, 0, 1);
 }
 
+/* Left half starts off-screen to the left */
 .link:before {
   left: 0;
   transform: translateX(calc(-100% - 10px)) scaleX(0);
   transform-origin: left;
 }
 
+/* Right half starts off-screen to the right */
 .link:after {
   right: 0;
   transform: translateX(calc(100% + 10px)) scaleX(0);
   transform-origin: right;
 }
 
+/* On hover, both halves slide in and scale up to fill */
 .link:hover:before {
   transform: translateX(calc(-100% - 10px)) scaleX(1);
   transform-origin: right;
@@ -232,21 +272,10 @@ nav li + li {
   transform-origin: left;
 }
 
-/* =======
-  CONTENT
-  ======= */
-#content {
-  display: flex;
-  height: 100%;
-}
-
-#content h1 {
-  font-size: calc(4vmin + 1em);
-  text-align: center;
-  margin: auto;
-  color: #fff;
-  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-}
+/* =============================================================================
+   GLOBAL LINK RESET
+   Removes default decoration and ensures consistent font across all anchors.
+   ============================================================================= */
 
 a,
 a:visited,

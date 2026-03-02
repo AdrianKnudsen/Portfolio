@@ -1,4 +1,6 @@
-/* Css imports */
+/* =============================================================================
+   IMPORTS
+   ============================================================================= */
 
 @import "./hero.css";
 @import "./kontakt.css";
@@ -6,25 +8,36 @@
 @import "./omMeg.css";
 @import "./hamburger.css";
 
+/* =============================================================================
+   CSS VARIABLES
+   Global design tokens used across all stylesheets.
+   ============================================================================= */
+
 :root {
-  --Primary: #222222;
-  --Secondary: #363636;
-  --Tertiary: #9a9d21;
-  --Lorem: #e0e0e0;
+  --Primary: #222222;   /* Page background */
+  --Secondary: #363636; /* Card / nav background */
+  --Tertiary: #9a9d21;  /* Accent color (olive green) */
+  --Lorem: #e0e0e0;     /* Body text and headings */
 
   --base-space: 1vw;
 
-  --offset-value: 30;
-  --btn-size: 60;
+  --offset-value: 30;   /* Controls logo and hamburger button positioning */
+  --btn-size: 60;       /* Hamburger button diameter in px */
 }
 
-/*!/--- color: var(--Primary); ---/*/
+/* =============================================================================
+   RESET
+   ============================================================================= */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* =============================================================================
+   BASE
+   ============================================================================= */
 
 body {
   background-color: var(--Primary);
@@ -38,6 +51,10 @@ body {
   align-items: center;
 }
 
+/* =============================================================================
+   TEXT SELECTION
+   ============================================================================= */
+
 ::selection {
   background: var(--Tertiary);
 }
@@ -45,6 +62,12 @@ body {
 span::selection {
   background: var(--Lorem);
 }
+
+/* =============================================================================
+   BACKGROUND BALLS
+   Absolutely positioned decorative circles animated via the Web Animations API.
+   z-index: -1 keeps them behind all page content.
+   ============================================================================= */
 
 .ball {
   position: absolute;

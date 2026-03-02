@@ -1,7 +1,10 @@
-// Background animation script
+// =============================================================================
+// BACKGROUND ANIMATION
+// Spawns floating balls with random colors, positions, and sizes.
+// Balls are appended directly to <body> so they sit behind all content.
+// =============================================================================
 
 const colors = ["#e0e0e0", "#363636", "#9a9d21", "#363636", "#9a9d21"];
-
 const numBalls = 50;
 const balls = [];
 
@@ -19,20 +22,20 @@ for (let i = 0; i < numBalls; i++) {
   document.body.append(ball);
 }
 
-// Keyframes
-balls.forEach((el, i, ra) => {
-  let to = {
-    x: Math.random() * (i % 2 === 0 ? -11 : 11),
+// Animate each ball along a random path, alternating direction infinitely
+balls.forEach((el, i) => {
+  const to = {
+    x: Math.random() * (i % 2 === 0 ? -11 : 11), // even-indexed balls drift left, odd drift right
     y: Math.random() * 12,
   };
 
-  let anim = el.animate(
+  el.animate(
     [
       { transform: "translate(0, 0)" },
       { transform: `translate(${to.x}rem, ${to.y}rem)` },
     ],
     {
-      duration: (Math.random() + 1) * 7000, // ball speed
+      duration: (Math.random() + 1) * 7000,
       direction: "alternate",
       fill: "both",
       iterations: Infinity,
@@ -41,105 +44,121 @@ balls.forEach((el, i, ra) => {
   );
 });
 
+// =============================================================================
+// DOM SETUP
+// Runs after the DOM is ready. Builds the logo, hero container, and navigation.
+// =============================================================================
+
 document.addEventListener("DOMContentLoaded", () => {
   const rootElement = document.querySelector(".root");
 
-  // Creating and appending the logo element directly to rootElement
+  // --- Logo ---
   const logo = document.createElement("img");
   logo.src = "./A-Logo.svg";
   logo.alt = "Logo";
   logo.classList.add("logo");
   rootElement.appendChild(logo);
 
-  // Creating a hero div for the main hero content to live in
+  // --- Hero container ---
+  // All hero content lives inside this div so it can be shown/hidden as a unit
   const heroContainer = document.createElement("div");
   heroContainer.classList.add("hero-container");
   rootElement.appendChild(heroContainer);
 
-  // Function to create hero content
-  function createHeroContent() {
-    heroContainer.innerHTML = ""; // Clears the hero container before adding new content
+  // ---------------------------------------------------------------------------
+  // HERO CONTENT
+  // Builds and renders the portrait image, name header, and intro paragraph.
+  // Called on initial load and again when the logo is clicked.
+  // ---------------------------------------------------------------------------
 
-    // Creating the hero image element
+  function createHeroContent() {
+    heroContainer.innerHTML = ""; // Clear before re-rendering
+
+    // Portrait image
     const img = document.createElement("img");
     img.src = "./Adrian-cyber.png";
     img.alt = "An image of the person that this portfolio is about";
     img.classList.add("portfolio-image");
     heroContainer.appendChild(img);
 
-    // Creating the hero header element
+    // Name header — ".Adrian { Knudsen }"
+    // The surname span uses data-text for the CSS glitch animation
     const header = document.createElement("h1");
     header.classList.add("hero-header");
+
     const adrianSpan = document.createElement("span");
     adrianSpan.textContent = ".Adrian";
     adrianSpan.classList.add("name-span");
     header.appendChild(adrianSpan);
+
     header.append(" { ");
+
     const knudsenSpan = document.createElement("span");
     knudsenSpan.textContent = "Knudsen";
     knudsenSpan.classList.add("surname-span");
-    knudsenSpan.setAttribute("data-text", "Knudsen");
+    knudsenSpan.setAttribute("data-text", "Knudsen"); // Required for the glitch pseudo-elements
     header.appendChild(knudsenSpan);
+
     header.append(" } ");
     heroContainer.appendChild(header);
 
-    // Creating the hero paragraph element
+    // Short intro paragraph
     const paragraph = document.createElement("p");
     paragraph.textContent =
-      "Hi, my name is Adrian and I’m a passionate designer and coder currently looking for opportunities in web development or design. I consider myself a designer with coding skills, as I have been working with design much longer than with code. I feel most at home in Figma and CSS, but I find JavaScript and TypeScript exciting and want to deepen my knowledge in these languages. In my free time, I enjoy playing video games, especially FPS and survival games. I have also worked as a freelance designer at Knudsen Grafisk AS, and in 2011 I held an art exhibition in Bergen showcasing digital artwork I created in Photoshop.";
+      "Hi, my name is Adrian and I'm a passionate designer and coder currently looking for opportunities in web development or design. I consider myself a designer with coding skills, as I have been working with design much longer than with code. I feel most at home in Figma and CSS, but I find JavaScript and TypeScript exciting and want to deepen my knowledge in these languages. In my free time, I enjoy playing video games, especially FPS and survival games. I have also worked as a freelance designer at Knudsen Grafisk AS, and in 2011 I held an art exhibition in Bergen showcasing digital artwork I created in Photoshop.";
     paragraph.classList.add("hero-text");
     heroContainer.appendChild(paragraph);
   }
 
-  // Initially create hero content
+  // Render hero on initial page load
   createHeroContent();
 
-  // Logo click event to reload hero content and hide other content if visible
+  // ---------------------------------------------------------------------------
+  // LOGO CLICK — Return to hero
+  // Hides all section content and re-renders the hero view.
+  // ---------------------------------------------------------------------------
 
   logo.addEventListener("click", () => {
-    // Hide "Om Meg" content if visible
     const omMegContent = document.querySelector(".om-meg-content");
-    if (omMegContent) {
-      omMegContent.style.display = "none";
-    }
-    // Hide "Prosjekter" content if visible
+    if (omMegContent) omMegContent.style.display = "none";
+
     const prosjekterContent = document.querySelector(".prosjekter-content");
-    if (prosjekterContent) {
-      prosjekterContent.style.display = "none";
-    }
-    // Hide "kontant" content if visible
+    if (prosjekterContent) prosjekterContent.style.display = "none";
+
     const kontaktContent = document.querySelector(".kontakt-content");
-    if (kontaktContent) {
-      kontaktContent.style.display = "none";
-    }
+    if (kontaktContent) kontaktContent.style.display = "none";
 
     createHeroContent();
     heroContainer.style.display = "";
   });
 
-  // Creating the navigation background
-  setTimeout(() => {
-    let open = false; // Tracks the menu state
+  // ---------------------------------------------------------------------------
+  // NAVIGATION
+  // Built inside a short timeout to guarantee the layout has settled before
+  // we measure element dimensions for the menu scaling animation.
+  // ---------------------------------------------------------------------------
 
-    // Creating the navigation background
+  setTimeout(() => {
+    let open = false; // Tracks whether the menu is currently open
+
+    // --- Nav background (the expanding circle) ---
     const navBg = document.createElement("div");
     navBg.id = "nav-bg";
     navBg.classList.add("btn");
     rootElement.appendChild(navBg);
 
-    // Creating the toggle button
+    // --- Hamburger toggle button ---
     const toggleBtn = document.createElement("div");
     toggleBtn.id = "toggle-btn";
     toggleBtn.classList.add("btn");
     rootElement.appendChild(toggleBtn);
 
-    // Creating spans for the hamburger icon
+    // Three spans make up the hamburger icon lines
     for (let i = 0; i < 3; i++) {
-      const span = document.createElement("span");
-      toggleBtn.appendChild(span);
+      toggleBtn.appendChild(document.createElement("span"));
     }
 
-    // Creating the navigation wrapper
+    // --- Nav wrapper, nav, and list ---
     const wrapper = document.createElement("div");
     wrapper.classList.add("wrapper");
     rootElement.appendChild(wrapper);
@@ -150,21 +169,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const ul = document.createElement("ul");
     nav.appendChild(ul);
 
-    // Defining and creating menu items
+    // --- Menu items ---
     const menuItems = [
       { text: "About", href: "#about" },
       { text: "Projects", href: "#projects" },
       { text: "Contact", href: "#contact" },
     ];
 
-    // Function to close the menu
+    // Toggles the open state, triggers the animation, and updates the button class
     function toggleMenu() {
       open = !open;
       animateMenu();
       toggleBtn.classList.toggle("shown", open);
     }
 
-    // Handle action for each link in the nav menu
+    // Build each menu item and attach its click handler
     menuItems.forEach((item) => {
       const li = document.createElement("li");
       const a = document.createElement("a");
@@ -190,13 +209,14 @@ document.addEventListener("DOMContentLoaded", () => {
         a.addEventListener("click", (e) => {
           e.preventDefault();
           showKontaktContent();
-
-          // Close the menu if it's open
           if (open) toggleMenu();
         });
       }
     });
 
+    // --- Menu animation helpers ---
+    // Calculates the translate and scale values needed to expand the nav
+    // background circle to cover the entire viewport from its corner position.
     let offsetX, offsetY, scale;
 
     function calculateValues() {
@@ -209,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       offsetX = w / 2 - elemW / 2 - offsetValue;
       offsetY = h / 2 - elemH / 2 - offsetValue;
-      const radius = Math.sqrt(h ** 2 + w ** 2);
+      const radius = Math.sqrt(h ** 2 + w ** 2); // Diagonal = minimum radius to fill viewport
       scale = radius / (elemW / 4) / 3 + 0.3;
     }
 
@@ -229,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
       open ? openMenu() : closeMenu();
     }
 
-    // Initial calculation and event listener setup
+    // Initial calculation + recalculate on window resize to keep scaling correct
     calculateValues();
 
     toggleBtn.addEventListener("click", toggleMenu, false);
@@ -239,118 +259,112 @@ document.addEventListener("DOMContentLoaded", () => {
         animateMenu();
       });
     });
-  }, 100); // Delay to ensure layout stability
+  }, 100); // Short delay to ensure layout dimensions are stable
 });
 
-// Function to handle the "Om Meg" content
-function showOmMegContent() {
-  // Hide or clear hero content
-  const heroContainer = document.querySelector(".hero-container");
-  if (heroContainer) {
-    heroContainer.style.display = "none";
-  }
-  // Hide "prosjekter" content if it exists
-  const prosjekterContent = document.querySelector(".prosjekter-content");
-  if (prosjekterContent) {
-    prosjekterContent.style.display = "none";
-  }
-  // Hide "kontakt" content if it exists
-  const kontaktContent = document.querySelector(".kontakt-content");
-  if (kontaktContent) {
-    kontaktContent.style.display = "none";
-  }
+// =============================================================================
+// ABOUT SECTION
+// Hides all other sections, then creates (or shows) the About content.
+// The element is only created once and toggled on subsequent visits.
+// =============================================================================
 
-  // Check if the Om Meg content already exists
+function showOmMegContent() {
+  // Hide other sections
+  const heroContainer = document.querySelector(".hero-container");
+  if (heroContainer) heroContainer.style.display = "none";
+
+  const prosjekterContent = document.querySelector(".prosjekter-content");
+  if (prosjekterContent) prosjekterContent.style.display = "none";
+
+  const kontaktContent = document.querySelector(".kontakt-content");
+  if (kontaktContent) kontaktContent.style.display = "none";
+
+  // Create the About section the first time, otherwise just make it visible
   let omMegContent = document.querySelector(".om-meg-content");
   if (!omMegContent) {
-    // Create the Om Meg container div
     omMegContent = document.createElement("div");
     omMegContent.classList.add("om-meg-content");
 
-    // Create the span element for the hash symbol
-    const hashSpan = document.createElement("span");
-    hashSpan.textContent = "#";
-    hashSpan.classList.add("hash-symbol");
-
-    // Create the h2 element for the title
+    // Section heading: "# About"
     const h2 = document.createElement("h2");
     h2.classList.add("om-meg-titel");
 
-    // Append the hash span to the h2 element before the title text
+    const hashSpan = document.createElement("span");
+    hashSpan.textContent = "#";
+    hashSpan.classList.add("hash-symbol");
     h2.appendChild(hashSpan);
     h2.append("About");
     omMegContent.appendChild(h2);
 
-    // Create the p element for the detailed text
+    // Bio text
     const p = document.createElement("p");
     p.innerHTML =
-      "My love for design is evident not only in my coding projects but also in my everyday life. I strongly believe that good design is more than just aesthetics; it’s about creating an intuitive and effective user experience. This philosophy is reflected in my work, where I always strive for innovative solutions that balance functionality with a visually appealing look.<br><br>Playing video games, watching movies, and series not only give me a chance to relax but also provide inspiration. I learn about different storytelling methods, character development, and visual effects, all of which contribute to my creative thought process.<br><br>As a dedicated and curious developer, I am always looking for opportunities to apply my skills in real-world projects. I am eager to contribute to a team with my technical knowledge and creative insight. Take a look at my portfolio to see a selection of my projects, and feel free to contact me for any potential collaboration opportunities.<br><br>Thank you for taking the time to review my portfolio. I look forward to the opportunity to bring my skills and passion to your team.";
-
+      "My love for design is evident not only in my coding projects but also in my everyday life. I strongly believe that good design is more than just aesthetics; it's about creating an intuitive and effective user experience. This philosophy is reflected in my work, where I always strive for innovative solutions that balance functionality with a visually appealing look.<br><br>Playing video games, watching movies, and series not only give me a chance to relax but also provide inspiration. I learn about different storytelling methods, character development, and visual effects, all of which contribute to my creative thought process.<br><br>As a dedicated and curious developer, I am always looking for opportunities to apply my skills in real-world projects. I am eager to contribute to a team with my technical knowledge and creative insight. Take a look at my portfolio to see a selection of my projects, and feel free to contact me for any potential collaboration opportunities.<br><br>Thank you for taking the time to review my portfolio. I look forward to the opportunity to bring my skills and passion to your team.";
     p.classList.add("om-meg-text");
     omMegContent.appendChild(p);
 
-    // Append the Om Meg content div to the root element
     document.querySelector(".root").appendChild(omMegContent);
   } else {
-    // If it already exists, ensure it's visible
     omMegContent.style.display = "block";
   }
 }
 
-// Function to handle the "Prosjekt" content
+// =============================================================================
+// PROJECTS SECTION
+// Hides all other sections, then creates (or shows) the carousel of projects.
+// The carousel element is only built once; subsequent visits toggle visibility.
+// =============================================================================
+
 function showProsjekterContent() {
-  // Hide the hero content and any other content
+  // Hide other sections
   const heroContainer = document.querySelector(".hero-container");
   heroContainer.style.display = "none";
 
-  // Hide "Om Meg" content if it exists
   const omMegContent = document.querySelector(".om-meg-content");
-  if (omMegContent) {
-    omMegContent.style.display = "none";
-  }
+  if (omMegContent) omMegContent.style.display = "none";
 
-  // Hide "kontakt" content if it exists
   const kontaktContent = document.querySelector(".kontakt-content");
-  if (kontaktContent) {
-    kontaktContent.style.display = "none";
-  }
+  if (kontaktContent) kontaktContent.style.display = "none";
 
-  // Check if the "Prosjekter" content already exists
+  // Create the Projects section the first time, otherwise just make it visible
   let prosjekterContent = document.querySelector(".prosjekter-content");
   if (!prosjekterContent) {
     prosjekterContent = document.createElement("div");
     prosjekterContent.classList.add("prosjekter-content");
-
     document.querySelector(".root").appendChild(prosjekterContent);
-    // Dynamically create and append the carousel to the "Prosjekter" content
-    createAndAppendCarousel(prosjekterContent);
 
-    enableSwipeForCarousel();
+    createAndAppendCarousel(prosjekterContent);
+    enableSwipeForCarousel(); // Attach touch swipe support after the slider exists
   } else {
     prosjekterContent.style.display = "block";
   }
 }
 
+// -----------------------------------------------------------------------------
+// CAROUSEL BUILDER
+// Constructs the radio-button-driven slider and appends it to the given parent.
+// Each slide contains a project image, title, description, tools, and links.
+// -----------------------------------------------------------------------------
+
 function createAndAppendCarousel(parentElement) {
   const carouselBox = document.createElement("div");
   carouselBox.className = "carousel-Box";
 
-  // Create the slider
   const slider = document.createElement("div");
   slider.className = "slider";
 
-  // Inputs for the carousel
+  // Hidden radio inputs — one per slide — drive the CSS-only slide switching
   const inputIds = ["btn-1", "btn-2", "btn-3"];
   inputIds.forEach((id, index) => {
     const input = document.createElement("input");
     input.type = "radio";
     input.name = "toggle";
     input.id = id;
-    if (index === 0) input.checked = true;
+    if (index === 0) input.checked = true; // Show first slide by default
     slider.appendChild(input);
   });
 
-  // Slider controls
+  // Dot indicators at the bottom of the slider (hidden on wider screens)
   const sliderControls = document.createElement("div");
   sliderControls.className = "slider-controls";
   inputIds.forEach((id) => {
@@ -358,14 +372,9 @@ function createAndAppendCarousel(parentElement) {
     label.setAttribute("for", id);
     sliderControls.appendChild(label);
   });
-
   slider.appendChild(sliderControls);
 
-  // Slides
-  const slides = document.createElement("ul");
-  slides.className = "slides";
-
-  // Information for each slide
+  // --- Project data ---
   const slideInfos = [
     {
       title: "Nomito",
@@ -396,11 +405,14 @@ function createAndAppendCarousel(parentElement) {
     },
   ];
 
+  // Build each slide from its data object
+  const slides = document.createElement("ul");
+  slides.className = "slides";
+
   slideInfos.forEach((slideInfo) => {
     const li = document.createElement("li");
     li.className = "slide";
 
-    // Image
     const img = document.createElement("img");
     img.className = "slide-image";
     img.src = slideInfo.imageSrc;
@@ -409,42 +421,36 @@ function createAndAppendCarousel(parentElement) {
     img.height = 240;
     li.appendChild(img);
 
-    // Slide content
     const div = document.createElement("div");
     div.className = "slide-content";
 
-    // Project titel
     const h2 = document.createElement("h2");
     h2.className = "slide-title";
     h2.textContent = slideInfo.title;
     div.appendChild(h2);
 
-    // Description text
     const p = document.createElement("p");
     p.className = "slide-text";
     p.textContent = slideInfo.text;
     div.appendChild(p);
 
-    // Tools used text box
     const toolsP = document.createElement("p");
     toolsP.className = "slide-tools";
     toolsP.textContent = "Tools: " + slideInfo.tools;
     div.appendChild(toolsP);
 
-    // GitHub link
     const githubLink = document.createElement("a");
     githubLink.href = slideInfo.githubLink;
     githubLink.className = "slide-link";
     githubLink.textContent = "GitHub";
-    githubLink.target = "_blank"; // Open in a new tab
+    githubLink.target = "_blank";
     div.appendChild(githubLink);
 
-    // Live site link
     const liveSiteLink = document.createElement("a");
     liveSiteLink.href = slideInfo.liveSiteLink;
     liveSiteLink.className = "slide-link";
     liveSiteLink.textContent = "Live Site";
-    liveSiteLink.target = "_blank"; // Open in a new tab
+    liveSiteLink.target = "_blank";
     div.appendChild(liveSiteLink);
 
     li.appendChild(div);
@@ -456,163 +462,142 @@ function createAndAppendCarousel(parentElement) {
   parentElement.appendChild(carouselBox);
 }
 
-// Function to handle the "Kontakt" content
+// =============================================================================
+// CONTACT SECTION
+// Hides all other sections, then creates (or shows) the Contact content.
+// The element is only created once and toggled on subsequent visits.
+// =============================================================================
+
 function showKontaktContent() {
-  // Hide "hero" content
+  // Hide other sections
   const heroContainer = document.querySelector(".hero-container");
   heroContainer.style.display = "none";
 
-  // Hide "Om Meg" content if it exists
   const omMegContent = document.querySelector(".om-meg-content");
-  if (omMegContent) {
-    omMegContent.style.display = "none";
-  }
+  if (omMegContent) omMegContent.style.display = "none";
 
-  // Hide "Prosjekter" if it exists
   const prosjekterContent = document.querySelector(".prosjekter-content");
-  if (prosjekterContent) {
-    prosjekterContent.style.display = "none";
-  }
+  if (prosjekterContent) prosjekterContent.style.display = "none";
 
-  // Check if the "Kontakt" content already exists
+  // Create the Contact section the first time, otherwise just make it visible
   let kontaktContent = document.querySelector(".kontakt-content");
   if (!kontaktContent) {
-    // Create a div for the "Kontakt" content
     kontaktContent = document.createElement("div");
     kontaktContent.classList.add("kontakt-content");
 
-    // Create and append the header specific to "Kontakt" content
+    // Heading
     const h2 = document.createElement("h2");
     h2.textContent = "Get in touch!";
-    kontaktContent.appendChild(h2);
     h2.classList.add("kontakt-header");
+    kontaktContent.appendChild(h2);
 
-    // Create and append kontakt text to "Kontakt" content
+    // Subtext
     const p = document.createElement("p");
     p.textContent = "Feel free to send an email!";
-    kontaktContent.appendChild(p);
     p.classList.add("kontakt-text");
+    kontaktContent.appendChild(p);
 
-    // Create and append vector to the "kontakt" content
+    // Decorative paper-plane icon
     const telegram = document.createElement("img");
     telegram.src = "./telegram-plane.svg";
-    telegram.alt = "Image of a telegram paper plane";
+    telegram.alt = "Decorative paper plane icon";
     telegram.classList.add("telegram");
     kontaktContent.appendChild(telegram);
 
-    // Create and append kontakt mail link to "Kontakt" content
+    // Clickable email address
     const mailLink = document.createElement("a");
     mailLink.href = "mailto:adrian@knudsen.no";
     mailLink.textContent = "adrian@knudsen.no";
-    kontaktContent.appendChild(mailLink);
     mailLink.classList.add("mail-link");
+    kontaktContent.appendChild(mailLink);
 
-    // Create a container div for social links
+    // --- Social links ---
     const socialLinksContainer = document.createElement("div");
     socialLinksContainer.classList.add("social-links-container");
 
-    // Create and append Github link img to the "kontakt" content
+    // GitHub
     const githubLinkAnchor = document.createElement("a");
     githubLinkAnchor.href = "https://github.com/AdrianKnudsen";
     githubLinkAnchor.target = "_blank";
     githubLinkAnchor.rel = "noopener noreferrer";
 
-    // Create the image element for the GitHub logo
     const githubLogo = document.createElement("img");
     githubLogo.src = "./github.svg";
-    githubLogo.alt = "Image of a GitHub logo";
+    githubLogo.alt = "GitHub logo";
     githubLogo.classList.add("github-logo");
-
     githubLinkAnchor.appendChild(githubLogo);
-
-    // Append the GitHub link to the social links container
     socialLinksContainer.appendChild(githubLinkAnchor);
 
-    // Create and append LinkedIn link img to the "kontakt" content
+    // LinkedIn
     const linkedinLinkAnchor = document.createElement("a");
     linkedinLinkAnchor.href =
       "https://www.linkedin.com/in/adrian-knudsen-4522012b6";
     linkedinLinkAnchor.target = "_blank";
     linkedinLinkAnchor.rel = "noopener noreferrer";
 
-    // Create the image element for the LinkedIn logo
     const linkedinLogo = document.createElement("img");
     linkedinLogo.src = "./social-linkedin.svg";
-    linkedinLogo.alt = "Image of a LinkedIn logo";
+    linkedinLogo.alt = "LinkedIn logo";
     linkedinLogo.classList.add("linkedin-logo");
-
     linkedinLinkAnchor.appendChild(linkedinLogo);
-
-    // Append the LinkedIn link to the social links container
     socialLinksContainer.appendChild(linkedinLinkAnchor);
 
-    // Append the social links container to the kontaktContent
     kontaktContent.appendChild(socialLinksContainer);
-
     document.querySelector(".root").appendChild(kontaktContent);
   } else {
-    // If it already exists, ensure it's visible
     kontaktContent.style.display = "";
   }
 }
 
+// =============================================================================
+// CAROUSEL SWIPE SUPPORT
+// Attaches touch event listeners to the slider so users can swipe between
+// slides on touch devices. Only horizontal swipes trigger slide changes —
+// vertical scroll is left unaffected.
+// =============================================================================
+
 function enableSwipeForCarousel() {
-  // Check if the device supports touch events
-  if ("ontouchstart" in window) {
-    const slider = document.querySelector(".slider");
+  if (!("ontouchstart" in window)) return; // Skip on non-touch devices
 
-    if (slider) {
-      let touchstartX = 0,
-        touchstartY = 0;
-      let touchendX = 0,
-        touchendY = 0;
+  const slider = document.querySelector(".slider");
+  if (!slider) return;
 
-      slider.addEventListener("touchstart", (e) => {
-        touchstartX = e.changedTouches[0].screenX;
-        touchstartY = e.changedTouches[0].screenY; // Capture the start Y coordinate
-      });
+  let touchstartX = 0,
+    touchstartY = 0,
+    touchendX = 0,
+    touchendY = 0;
 
-      slider.addEventListener("touchend", (e) => {
-        touchendX = e.changedTouches[0].screenX;
-        touchendY = e.changedTouches[0].screenY; // Capture the end Y coordinate
-        checkSwipeDirection();
-      });
+  slider.addEventListener("touchstart", (e) => {
+    touchstartX = e.changedTouches[0].screenX;
+    touchstartY = e.changedTouches[0].screenY;
+  });
 
-      function checkSwipeDirection() {
-        // Calculate the distance of swipe in both directions
-        const diffX = touchendX - touchstartX;
-        const diffY = touchendY - touchstartY;
+  slider.addEventListener("touchend", (e) => {
+    touchendX = e.changedTouches[0].screenX;
+    touchendY = e.changedTouches[0].screenY;
+    checkSwipeDirection();
+  });
 
-        if (Math.abs(diffX) > Math.abs(diffY)) {
-          if (diffX < 0) {
-            // Swiped left, show next slide
-            showNextSlide();
-          } else if (diffX > 0) {
-            // Swiped right, show previous slide
-            showPreviousSlide();
-          }
-        }
-      }
+  function checkSwipeDirection() {
+    const diffX = touchendX - touchstartX;
+    const diffY = touchendY - touchstartY;
 
-      function showNextSlide() {
-        const inputs = document.querySelectorAll('.slider input[type="radio"]');
-        const currentIndex = Array.from(inputs).findIndex(
-          (input) => input.checked
-        );
-        const nextIndex = (currentIndex + 1) % inputs.length; // Loop back to 0 if at the last slide
-        inputs[nextIndex].checked = true;
-      }
-
-      function showPreviousSlide() {
-        const inputs = document.querySelectorAll('.slider input[type="radio"]');
-        const currentIndex = Array.from(inputs).findIndex(
-          (input) => input.checked
-        );
-        const previousIndex =
-          (currentIndex - 1 + inputs.length) % inputs.length; // Go to the last slide if at the first slide
-        inputs[previousIndex].checked = true;
-      }
+    // Only respond to horizontal swipes (ignore diagonal/vertical scrolling)
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX < 0) showNextSlide();
+      else if (diffX > 0) showPreviousSlide();
     }
   }
-}
 
+  function showNextSlide() {
+    const inputs = document.querySelectorAll('.slider input[type="radio"]');
+    const currentIndex = Array.from(inputs).findIndex((input) => input.checked);
+    inputs[(currentIndex + 1) % inputs.length].checked = true; // Wraps back to first slide
+  }
+
+  function showPreviousSlide() {
+    const inputs = document.querySelectorAll('.slider input[type="radio"]');
+    const currentIndex = Array.from(inputs).findIndex((input) => input.checked);
+    inputs[(currentIndex - 1 + inputs.length) % inputs.length].checked = true; // Wraps to last slide
+  }
+}

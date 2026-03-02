@@ -1,12 +1,15 @@
+/* =============================================================================
+   CONTACT SECTION — Layout
+   Centered flex column with a subtle accent border.
+   ============================================================================= */
+
 .kontakt-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   height: auto;
   width: 85%;
-
   border-radius: 27.87px 0px 27.87px 27.87px;
   border: 1px solid var(--Tertiary);
   background: rgba(44, 44, 44, 0.9);
@@ -14,6 +17,10 @@
   padding: 95px 30px 147px 30px;
   margin: auto;
 }
+
+/* =============================================================================
+   CONTACT SECTION — Typography
+   ============================================================================= */
 
 .kontakt-header {
   color: var(--Lorem);
@@ -31,17 +38,24 @@
   margin-bottom: 2rem;
 }
 
+/* =============================================================================
+   CONTACT SECTION — Icons & links
+   ============================================================================= */
+
+/* Decorative paper-plane illustration */
 .telegram {
   margin-bottom: 2rem;
   width: 5rem;
 }
 
+/* Clickable email address */
 .mail-link {
   margin-bottom: 2rem;
   font-size: 1.5rem;
   cursor: pointer;
 }
 
+/* Row of social media icons */
 .social-links-container {
   width: 12.3rem;
   display: flex;
@@ -57,6 +71,10 @@
   width: 4rem;
   cursor: pointer;
 }
+
+/* =============================================================================
+   RESPONSIVE — 500px
+   ============================================================================= */
 
 @media (min-width: 500px) {
   .kontakt-header {
