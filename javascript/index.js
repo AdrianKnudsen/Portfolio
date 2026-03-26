@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Logo ---
   const logo = document.createElement("img");
-  logo.src = "./A-Logo.svg";
+  logo.src = "./svg/A-Logo.svg";
   logo.alt = "Logo";
   logo.classList.add("logo");
   rootElement.appendChild(logo);
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Portrait image
     const img = document.createElement("img");
-    img.src = "./Adrian-cyber.png";
+    img.src = "./images/Adrian-cyber.png";
     img.alt = "An image of the person that this portfolio is about";
     img.classList.add("portfolio-image");
     heroContainer.appendChild(img);
@@ -380,7 +380,7 @@ function createAndAppendCarousel(parentElement) {
       title: "Nomito",
       text: "Nomito is a smart web app that helps you cook with what you already have at home. The goal is to reduce food waste, save money, and make everyday cooking easier and more creative.",
       tools: "Next.js, JavaScript, CSS, HTML",
-      imageSrc: "./nomito_vercel_app.jpeg",
+      imageSrc: "./images/nomito_vercel_app.jpeg",
       alt: "Screenshot of the Nomito web app",
       githubLink: "https://github.com/AdrianKnudsen/nomito",
       liveSiteLink: "https://nomito.vercel.app",
@@ -389,7 +389,7 @@ function createAndAppendCarousel(parentElement) {
       title: "Wear & Tear",
       text: "A modern e-commerce web app built with Next.js for the frontend and Sanity as the backend CMS. Features product listings, dynamic pages, and a clean, responsive design. Work in progress.",
       tools: "Next.js, JavaScript, CSS, HTML",
-      imageSrc: "./wearandtear_vercel_app.jpeg",
+      imageSrc: "./images/wearandtear_vercel_app.jpeg",
       alt: "Screenshot of the Wear & Tear e-commerce site",
       githubLink: "https://github.com/AdrianKnudsen/wearandtear",
       liveSiteLink: "https://wearandtear.vercel.app",
@@ -398,7 +398,7 @@ function createAndAppendCarousel(parentElement) {
       title: "Luna Link",
       text: "This was a project I worked on while attending Kodehode. Personally, I was mainly responsible for the design, but I also handled the header and search/filtering logic. This was a project I learned a lot from, both in terms of coding and collaboration.",
       tools: "React, JavaScript, CSS, HTML",
-      imageSrc: "./Luna Link.jpeg",
+      imageSrc: "./images/Luna Link.jpeg",
       alt: "Screenshot of the Luna Link project",
       githubLink: "https://github.com/AdrianK-B06/Luna-Link.git",
       liveSiteLink: "https://lunalink.netlify.app",
@@ -499,7 +499,7 @@ function showKontaktContent() {
 
     // Decorative paper-plane icon
     const telegram = document.createElement("img");
-    telegram.src = "./telegram-plane.svg";
+    telegram.src = "./svg/telegram-plane.svg";
     telegram.alt = "Decorative paper plane icon";
     telegram.classList.add("telegram");
     kontaktContent.appendChild(telegram);
@@ -522,7 +522,7 @@ function showKontaktContent() {
     githubLinkAnchor.rel = "noopener noreferrer";
 
     const githubLogo = document.createElement("img");
-    githubLogo.src = "./github.svg";
+    githubLogo.src = "./svg/github.svg";
     githubLogo.alt = "GitHub logo";
     githubLogo.classList.add("github-logo");
     githubLinkAnchor.appendChild(githubLogo);
@@ -536,7 +536,7 @@ function showKontaktContent() {
     linkedinLinkAnchor.rel = "noopener noreferrer";
 
     const linkedinLogo = document.createElement("img");
-    linkedinLogo.src = "./social-linkedin.svg";
+    linkedinLogo.src = "./svg/social-linkedin.svg";
     linkedinLogo.alt = "LinkedIn logo";
     linkedinLogo.classList.add("linkedin-logo");
     linkedinLinkAnchor.appendChild(linkedinLogo);
