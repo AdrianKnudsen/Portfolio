@@ -183,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Toggles the open state, triggers the animation, and updates the button class
     function toggleMenu() {
       open = !open;
+      calculateValues();
       animateMenu();
       toggleBtn.classList.toggle("shown", open);
     }
