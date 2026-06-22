@@ -8,6 +8,10 @@ const colors = ["#e0e0e0", "#363636", "#9a9d21", "#363636", "#9a9d21"];
 const numBalls = 50;
 const balls = [];
 
+const ballLayer = document.createElement("div");
+ballLayer.classList.add("ball-layer");
+document.body.append(ballLayer);
+
 for (let i = 0; i < numBalls; i++) {
   let ball = document.createElement("div");
   ball.classList.add("ball");
@@ -19,7 +23,7 @@ for (let i = 0; i < numBalls; i++) {
   ball.style.height = ball.style.width;
 
   balls.push(ball);
-  document.body.append(ball);
+  ballLayer.append(ball);
 }
 
 // Animate each ball along a random path, alternating direction infinitely
@@ -40,7 +44,7 @@ balls.forEach((el, i) => {
       fill: "both",
       iterations: Infinity,
       easing: "ease-in-out",
-    }
+    },
   );
 });
 
@@ -225,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
       const offsetValue = Number(
-        getComputedStyle(navBg).getPropertyValue("--offset-value")
+        getComputedStyle(navBg).getPropertyValue("--offset-value"),
       );
       offsetX = w / 2 - elemW / 2 - offsetValue;
       offsetY = h / 2 - elemH / 2 - offsetValue;

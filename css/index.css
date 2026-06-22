@@ -14,15 +14,15 @@
    ============================================================================= */
 
 :root {
-  --Primary: #222222;   /* Page background */
+  --Primary: #222222; /* Page background */
   --Secondary: #363636; /* Card / nav background */
-  --Tertiary: #9a9d21;  /* Accent color (olive green) */
-  --Lorem: #e0e0e0;     /* Body text and headings */
+  --Tertiary: #9a9d21; /* Accent color (olive green) */
+  --Lorem: #e0e0e0; /* Body text and headings */
 
   --base-space: 1vw;
 
-  --offset-value: 30;   /* Controls logo and hamburger button positioning */
-  --btn-size: 60;       /* Hamburger button diameter in px */
+  --offset-value: 30; /* Controls logo and hamburger button positioning */
+  --btn-size: 60; /* Hamburger button diameter in px */
 }
 
 /* =============================================================================
@@ -74,4 +74,12 @@ span::selection {
   border-radius: 100%;
   opacity: 0.5;
   z-index: -1;
+}
+
+.ball-layer {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
 }
